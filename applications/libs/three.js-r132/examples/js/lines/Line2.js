@@ -1,19 +1,20 @@
-import { LineSegments2 } from '../lines/LineSegments2.js';
-import { LineGeometry } from '../lines/LineGeometry.js';
-import { LineMaterial } from '../lines/LineMaterial.js';
+( function () {
 
-class Line2 extends LineSegments2 {
+	class Line2 extends THREE.LineSegments2 {
 
-	constructor( geometry = new LineGeometry(), material = new LineMaterial( { color: Math.random() * 0xffffff } ) ) {
+		constructor( geometry = new THREE.LineGeometry(), material = new THREE.LineMaterial( {
+			color: Math.random() * 0xffffff
+		} ) ) {
 
-		super( geometry, material );
+			super( geometry, material );
+			this.type = 'Line2';
 
-		this.type = 'Line2';
+		}
 
 	}
 
-}
+	Line2.prototype.isLine2 = true;
 
-Line2.prototype.isLine2 = true;
+	THREE.Line2 = Line2;
 
-export { Line2 };
+} )();

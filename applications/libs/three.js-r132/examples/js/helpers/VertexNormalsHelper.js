@@ -1,111 +1,91 @@
-import {
-	BufferGeometry,
-	Float32BufferAttribute,
-	LineSegments,
-	LineBasicMaterial,
-	Matrix3,
-	Vector3
-} from '../../../build/three.module.js';
+( function () {
 
-const _v1 = new Vector3();
-const _v2 = new Vector3();
-const _normalMatrix = new Matrix3();
+	const _v1 = new THREE.Vector3();
 
-class VertexNormalsHelper extends LineSegments {
+	const _v2 = new THREE.Vector3();
 
-	constructor( object, size = 1, color = 0xff0000 ) {
+	const _normalMatrix = new THREE.Matrix3();
 
-		let nNormals = 0;
+	class VertexNormalsHelper extends THREE.LineSegments {
 
-		const objGeometry = object.geometry;
+		constructor( object, size = 1, color = 0xff0000 ) {
 
-		if ( objGeometry && objGeometry.isGeometry ) {
+			let nNormals = 0;
+			const objGeometry = object.geometry;
 
-			console.error( 'THREE.VertexNormalsHelper no longer supports Geometry. Use BufferGeometry instead.' );
-			return;
+			if ( objGeometry && objGeometry.isGeometry ) {
 
-		} else if ( objGeometry && objGeometry.isBufferGeometry ) {
+				console.error( 'THREE.VertexNormalsHelper no longer supports Geometry. Use THREE.BufferGeometry instead.' );
+				return;
 
-			nNormals = objGeometry.attributes.normal.count;
+			} else if ( objGeometry && objGeometry.isBufferGeometry ) {
+
+				nNormals = objGeometry.attributes.normal.count;
+
+			} //
+
+
+			const geometry = new THREE.BufferGeometry();
+			const positions = new THREE.Float32BufferAttribute( nNormals * 2 * 3, 3 );
+			geometry.setAttribute( 'position', positions );
+			super( geometry, new THREE.LineBasicMaterial( {
+				color,
+				toneMapped: false
+			} ) );
+			this.object = object;
+			this.size = size;
+			this.type = 'VertexNormalsHelper'; //
+
+			this.matrixAutoUpdate = false;
+			this.update();
 
 		}
 
-		//
+		update() {
 
-		const geometry = new BufferGeometry();
+			this.object.updateMatrixWorld( true );
 
-		const positions = new Float32BufferAttribute( nNormals * 2 * 3, 3 );
+			_normalMatrix.getNormalMatrix( this.object.matrixWorld );
 
-		geometry.setAttribute( 'position', positions );
+			const matrixWorld = this.object.matrixWorld;
+			const position = this.geometry.attributes.position; //
 
-		super( geometry, new LineBasicMaterial( { color, toneMapped: false } ) );
+			const objGeometry = this.object.geometry;
 
-		this.object = object;
-		this.size = size;
-		this.type = 'VertexNormalsHelper';
+			if ( objGeometry && objGeometry.isGeometry ) {
 
-		//
+				console.error( 'THREE.VertexNormalsHelper no longer supports Geometry. Use THREE.BufferGeometry instead.' );
+				return;
 
-		this.matrixAutoUpdate = false;
+			} else if ( objGeometry && objGeometry.isBufferGeometry ) {
 
-		this.update();
+				const objPos = objGeometry.attributes.position;
+				const objNorm = objGeometry.attributes.normal;
+				let idx = 0; // for simplicity, ignore index and drawcalls, and render every normal
 
-	}
+				for ( let j = 0, jl = objPos.count; j < jl; j ++ ) {
 
-	update() {
+					_v1.set( objPos.getX( j ), objPos.getY( j ), objPos.getZ( j ) ).applyMatrix4( matrixWorld );
 
-		this.object.updateMatrixWorld( true );
+					_v2.set( objNorm.getX( j ), objNorm.getY( j ), objNorm.getZ( j ) );
 
-		_normalMatrix.getNormalMatrix( this.object.matrixWorld );
+					_v2.applyMatrix3( _normalMatrix ).normalize().multiplyScalar( this.size ).add( _v1 );
 
-		const matrixWorld = this.object.matrixWorld;
+					position.setXYZ( idx, _v1.x, _v1.y, _v1.z );
+					idx = idx + 1;
+					position.setXYZ( idx, _v2.x, _v2.y, _v2.z );
+					idx = idx + 1;
 
-		const position = this.geometry.attributes.position;
-
-		//
-
-		const objGeometry = this.object.geometry;
-
-		if ( objGeometry && objGeometry.isGeometry ) {
-
-			console.error( 'THREE.VertexNormalsHelper no longer supports Geometry. Use BufferGeometry instead.' );
-			return;
-
-		} else if ( objGeometry && objGeometry.isBufferGeometry ) {
-
-			const objPos = objGeometry.attributes.position;
-
-			const objNorm = objGeometry.attributes.normal;
-
-			let idx = 0;
-
-			// for simplicity, ignore index and drawcalls, and render every normal
-
-			for ( let j = 0, jl = objPos.count; j < jl; j ++ ) {
-
-				_v1.set( objPos.getX( j ), objPos.getY( j ), objPos.getZ( j ) ).applyMatrix4( matrixWorld );
-
-				_v2.set( objNorm.getX( j ), objNorm.getY( j ), objNorm.getZ( j ) );
-
-				_v2.applyMatrix3( _normalMatrix ).normalize().multiplyScalar( this.size ).add( _v1 );
-
-				position.setXYZ( idx, _v1.x, _v1.y, _v1.z );
-
-				idx = idx + 1;
-
-				position.setXYZ( idx, _v2.x, _v2.y, _v2.z );
-
-				idx = idx + 1;
+				}
 
 			}
 
-		}
+			position.needsUpdate = true;
 
-		position.needsUpdate = true;
+		}
 
 	}
 
-}
+	THREE.VertexNormalsHelper = VertexNormalsHelper;
 
-
-export { VertexNormalsHelper };
+} )();
