@@ -2,7 +2,7 @@ import * as THREE from '../../libs/three.js-r132/build/three.module.js';
 document.addEventListener("DOMContentLoded", () =>{
 	const scene = new THREE.Scene();
 	const geometry = new THREE.BoxGeometry(1, 1, 1);
-	const material = new THREE.MeshBasicMaterial({ color: "#0000FF" });
+	const material = new THREE.MeshBasicMaterial({ color: "red" });
 	const cube = new THREE.Mesh(geometry, material);
 
 	scene.add(cube);
