@@ -1,10 +1,10 @@
-import { GLTFLoader, GLTFLoder } from "../../libs/three.js-r132/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFLoader } from "../../libs/three.js-r132/examples/jsm/loaders/GLTFLoader.js";
 import { mockWithVideo } from '../../libs/camera-mock.js';
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
-      mockWithVideo('../../assets/mock-videos/musicband1.mp4');
+    mockWithVideo('../../assets/mock-videos/musicband1.mp4');
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc: '../../assets/targets/musicband.mind',
