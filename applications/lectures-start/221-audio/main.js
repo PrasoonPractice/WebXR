@@ -1,4 +1,4 @@
-import {loadGLTF} from "../../libs/loader.js";
+import {loadGLTF, loadAudio} from "../../libs/loader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -18,6 +18,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const anchor = mindarThree.addAnchor(0);
     anchor.group.add(raccoon.scene);
+
+      const audioClip = await loadAudio("../../assets/sounds/musicband-background.mp3");
+
+      const listener = THREE.AudioListener();
+      const audio = THREE.PositionalAudio(listener);
+
+      camera.add(listener);
+      anchor.group.add(audio);
+
+      audio.setRefDistance(100);
+      audio.setBuffer(audioClip);
+      audio.setLoop(true);
+
+      anchor.onTargetFound = () => {
+          audio.play();
+      }
+      anchor.onTargetLost = () => {
+          audio.pause();
+      }
 
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
