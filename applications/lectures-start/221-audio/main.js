@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const audioClip = await loadAudio("../../assets/sounds/musicband-background.mp3");
 
-      const listener = THREE.AudioListener();
-      const audio = THREE.PositionalAudio(listener);
+      const listener = new THREE.AudioListener();
+      const audio = new THREE.PositionalAudio(listener);
 
       camera.add(listener);
       anchor.group.add(audio);
