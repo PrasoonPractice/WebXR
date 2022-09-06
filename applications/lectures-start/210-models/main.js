@@ -1,3 +1,4 @@
+import { GLTFLoader, GLTFLoder } from "../../libs/three.js-r132/examples/jsm/loaders/GLTFLoader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,6 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const {renderer, scene, camera} = mindarThree;
 
     const anchor = mindarThree.addAnchor(0);
+    const loder = new GLTFLoader();
+    loder.load("../../assets/models/musicband-raccoon/scene.gltf", (gltf) => {
+        //gltf.scene: THREE.Group
+        anchor.group.add(gltf.scene);
+
+      };
 
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
