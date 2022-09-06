@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera();
-      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true });
 
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(window.devicePixelRatio);
