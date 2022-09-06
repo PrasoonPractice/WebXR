@@ -11,10 +11,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const {renderer, scene, camera} = mindarThree;
 
+    const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
+    scene.add(light);
+
     const anchor = mindarThree.addAnchor(0);
     const loder = new GLTFLoader();
     loder.load("../../assets/models/musicband-raccoon/scene.gltf", (gltf) => {
         //gltf.scene: THREE.Group
+        gltf.scene.scale.set(0.1, 0.1, 0.1);
+        gltf.scene.position.set(0, -0.4, 0);
         anchor.group.add(gltf.scene);
 
       });
