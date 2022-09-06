@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //if the model have pre programmed animations they are imported in gltf.animation property
     //to play these animations we can use the three.js animation mixer class
     const mixer = new THREE.AnimationMixer(gltf.scene);
-    const action = mixer.clipAction(gltf.animations{0});
+    const action = mixer.clipAction(gltf.animations[0]);
     action.play();
 
       const clock = new THREE.Clock();
