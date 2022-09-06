@@ -1,15 +1,6 @@
-import { GLTFLoader } from "../../libs/three.js-r132/examples/jsm/loaders/GLTFLoader.js";
+import { loadGLTF } from "../../libs/loader.js";
 import { mockWithVideo } from '../../libs/camera-mock.js';
 const THREE = window.MINDAR.IMAGE.THREE;
-
-const loadGLTF = (path) => {
-    return new Promise((resolve, reject) => {
-        const loader = new GLTFLoader();
-        loader.load(path, (gltf) => {
-            resolve(gltf);
-        });
-    });
-};
 
 document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
