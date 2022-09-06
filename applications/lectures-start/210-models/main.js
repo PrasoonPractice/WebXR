@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //gltf.scene: THREE.Group
         anchor.group.add(gltf.scene);
 
-      };
+      });
 
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
