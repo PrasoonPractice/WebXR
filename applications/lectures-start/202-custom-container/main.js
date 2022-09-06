@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
     mockWithVideo('../../assets/mock-videos/course-banner1.mp4');
 
-    const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-      container: document.body,
+      const mindarThree = new window.MINDAR.IMAGE.MindARThree({
+          container: document.querySelector("#my-container"),
       imageTargetSrc: '../../assets/targets/course-banner.mind',
     });
     const {renderer, scene, camera} = mindarThree;
