@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const anchor = mindarThree.addAnchor(0);
 
-    const gltf = await loadGLTF("../../assets/models/musicband-raccoon/scene.gltf");
-    gltf.scene.scale.set(0.1, 0.1, 0.1);
-    gltf.scene.position.set(0, -0.4, 0);
-    anchor.group.add(gltf.scene);
+    const glb = await loadGLTF("../../Project1/Avatar.glb");
+    glb.scene.scale.set(0.1, 0.1, 0.1);
+    glb.scene.position.set(0, -0.4, 0);
+    anchor.group.add(glb.scene);
 
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
