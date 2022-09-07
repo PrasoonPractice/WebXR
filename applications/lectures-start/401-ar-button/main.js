@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
         scene.add(light);
 
-        renderer.xr.enable = true;
+        renderer.xr.enabled = true;
         renderer.setAnimationLoop(() => {
             renderer.render(scene, camera);
         });
