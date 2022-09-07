@@ -20,18 +20,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const arButton = ARButton.createButton(renderer, {optionalFeatures: ['dom-overlay'], domOverlay: {root: document.body}});
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
- 
-      const controller = renderer.xr.getController(0);
-      scene.add(controller);
-
-      controller.addEventListener('select', () => {
-          const geometry = new THREE.BoxGeometry(0.06, 0.06, 0.06);
-          const material = new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random() });
-          const mesh = new THREE.Mesh(geometry, material);
-          mesh.position.applyMatrix4(controller.matrixWorld);
-          mesh.quaternion.setFormRotationMatrix(controller.matrixWorld);
-
-          scene.add(mesh);
+    
+    const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
+    scene.add(light);
+    const controller = renderer.xr.getController(0);
+    scene.add(controller);
+    const anchor = mindarThree.addAnchor(0);
+    controller.addEventListener('select', () => {
+        const gltf = await loadGLTF("../../assets/models/musicband-raccoon/scene.gltf");
+        gltf.scene.scale.set(0.1, 0.1, 0.1);
+        gltf.scene.position.applyMatrix4(controller.matrixWorld);
+        gltf.scene.quaternion.setFormRotationMatrix(controller.matrixWorld);
+        anchor.group.add(gltf.scene);
+        scene.add(mesh);
     });
   }
 
