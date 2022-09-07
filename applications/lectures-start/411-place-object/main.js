@@ -20,9 +20,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const arButton = ARButton.createButton(renderer, {optionalFeatures: ['dom-overlay'], domOverlay: {root: document.body}});
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
+ 
+      const controller = renderer.xr.getController(0);
+      scene.add(controller);
 
-    const controller = renderer.xr.getController(0);
-    controller.addEventListener('select', () => {
+      controller.addEventListener('select', () => {
+          const geometry = new THREE.BoxGeometry(0.06, 0.06, 0.06);
+          const material = new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random() });
+          const mesh = new THREE.Mesh(geometry, material);
+          mesh.position.applyMatrix4(controller.matrixWorld);
+          mesh.quaternion.setFormRotationMatrix(controller.matrixWorld);
+
+          scene.add(mesh);
     });
   }
 
