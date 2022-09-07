@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
-        document.body.appendChild(renderer, domElement);
+        document.body.appendChild(renderer.domElement);
 
         const geometry = new THREE.BoxGeometry(0.06, 0.06, 0.06);
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00});
