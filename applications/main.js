@@ -10,8 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
     
     const initialize = async() => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera();
 
     const {renderer, cssRenderer, scene, cssScene, camera} = mindarThree;
 
