@@ -30,9 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const controller = renderer.xr.getController(0);
         scene.add(controller);
+        
+        const glb = await loadGLTF("./Avatar.glb");
+        glb.scene.scale.set(0.1, 0.1, 0.1);
+        
         controller.addEventListener('select', () => {
-            const glb = await loadGLTF("./Avatar.glb");
-            glb.scene.scale.set(0.1, 0.1, 0.1);
             glb.scene.position.setFromMatrixPosition(reticle.matrix);
             anchor.group.add(glb.scene);
 
