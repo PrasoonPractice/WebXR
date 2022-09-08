@@ -106,8 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.setRefDistance(100);
     audio.setLoop(true);
 
-    const listener = new THREEe.AudioListener();
-    camera.add(listener);
 
     const textElement = document.createElement("div");
     const textObj1 = new CSS3DObject(textElement);
