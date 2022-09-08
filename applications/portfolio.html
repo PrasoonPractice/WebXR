@@ -57,7 +57,7 @@
                     clearInterval(id);
                     onDone();
                 }
-                avatar.setAttribute("position", "1 -0.25 " + z);
+                avatar.setAttribute("position", "0 -0.25 " + z);
             }, 10);
         }
 
@@ -68,7 +68,6 @@
                     showAvatar(() => {
                         setTimeout(() => {
                             showInfo();
-                            });
                         }, 300);
                     });
                 });
