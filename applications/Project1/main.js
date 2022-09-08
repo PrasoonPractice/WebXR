@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const hitPose = hit.getPose(referenceSpace);
                     reticle.visible = true;
                     reticle.matrix.fromArray(hitPose.transform.matrix);
-                } eles {
+                } eles 
+                {
                     reticle.visible = false;
                     action.play();
                 }
