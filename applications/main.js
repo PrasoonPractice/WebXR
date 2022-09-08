@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.group.add(emailIcon);
     anchor.group.add(cardGroup);
 
-    const audioClip = await loadAudio('background.mp3');
+    const audioClip = await loadAudio('./Project1/background.mp3');
 
     const listener = new THREEe.AudioListener();
     camera.add(listener);
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (o === emailIcon) {
 	    //looking into ways to directly open a compose mail window;
 	  } else if (o === avatar.scene){
-        const introAudio = await loadAudio('intro.mp3');
+        const introAudio = await loadAudio('./Project1/intro.mp3');
         const iAudio = new THREEe.PositionalAudio(listener);
         anchor.group.add(iAudio);
         audio.pause();
