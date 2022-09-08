@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const initialize = async() => {
 
-    const {renderer, cssRenderer, scene, cssScene, camera} = mindarThree;
+    const {cssRenderer, scene, cssScene, camera} = mindarThree;
 
     const light = new THREEe.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
     scene.add(light);
