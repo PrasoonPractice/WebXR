@@ -1,5 +1,5 @@
 import { CSS3DObject } from './libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js';
-import {loadGLTF, loadTexture, loadTextures, loadVideo} from './libs/loader.js';
+import {loadGLTF, loadTexture, loadTextures, loadAudio} from './libs/loader.js';
 import * as THREE from '../../libs/three.js-r132/build/three.module.js';
 import {ARButton} from '../../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
