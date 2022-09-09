@@ -2,11 +2,30 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./libs/mindar/mindar-image-three.prod.js"></script>
-    <script src="./main.js" type="module"></script>
+    <script src="./CSSmain.js" type="module"></script>
     <style>
       html, body {position: relative; margin: 0; width: 100%; height: 100%; overflow: hidden}
+
+      #ar-div {
+	width: 1000px;
+	height: 1000px;
+	visibility: hidden;
+
+	background: #fffffe;
+	font-size: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+      }
+    </style>
     </style>
   </head>
   <body>
+      <div id="ar-div">
+          <img src="./Project1/card.jpg", alt="company_logo">
+          <h2>Name:<u><i>Prasoon Srivastava</i></u></h2>
+          <h3><u>Employee</u></h3>
+      </div>
   </body>
 </html>
