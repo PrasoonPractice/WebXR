@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(audioBG);
 
         audioBG.setBuffer(bgAudio);
-        audioBG.setRefDistance(200);
+        audioBG.setRefDistance(80);
         audioBG.setLoop(true);
 
         audioBG.play();
