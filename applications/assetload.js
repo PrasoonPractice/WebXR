@@ -4,6 +4,7 @@ const THREE = window.MINDAR.IMAGE.THREE;
 document.addEventListener('DOMContentLoaded', () => {
     const start = async () => {
 
+        
         //when the hit test occures
 
         const mindarThree = new window.MINDAR.IMAGE.MindARThree({
