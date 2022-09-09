@@ -1,12 +1,18 @@
 import { CSS3DObject } from './libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js';
+import {mockWithVideo} from '../../libs/camera-mock.js';
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const start = async () => {
-        const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-            container: document.body,
-            imageTargetSrc: './assets/targets/course-banner.mind',
-        });
+  const start = async() => {
+
+    mockWithVideo('./assets/mock-videos/course-banner1.mp4');
+
+
+    const mindarThree = new window.MINDAR.IMAGE.MindARThree({
+      container: document.body,
+      imageTargetSrc: '../../assets/targets/course-banner.mind',
+    })
+
         const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
 
         const obj = new CSS3DObject(document.querySelector("#ar-div"));
