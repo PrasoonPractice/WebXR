@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
     scene.add(light);
 
-    const gltf = await loadGLTF('../../assets/models/musicband-raccoon/scene.gltf');
-    gltf.scene.scale.set(0.1, 0.1, 0.1);
-    gltf.scene.position.set(0, -0.4, 0);
+    const gltf = await loadGLTF('../../Project1/Avatar.glb');
+    gltf.scene.scale.set(1, 1, 1);
+    gltf.scene.position.set(-2, -0.2, 0);
 
     const anchor = mindarThree.addAnchor(0);
     anchor.group.add(gltf.scene);
