@@ -4,13 +4,11 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
-
     mockWithVideo('./assets/mock-videos/course-banner1.mp4');
-
 
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      imageTargetSrc: '../../assets/targets/course-banner.mind',
+      imageTargetSrc: './assets/targets/course-banner.mind',
     })
 
         const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
