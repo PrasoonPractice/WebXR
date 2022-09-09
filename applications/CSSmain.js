@@ -18,6 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderer.setAnimationLoop(() => {
             cssRenderer.render(cssScene, camera);
         });
-    }
+    };
     start();
 });
