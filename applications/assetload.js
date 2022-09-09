@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         audioBG.setRefDistance(80);
         audioBG.setLoop(true);
 
-        audioBG.play();
+        //audioBG.play();
          
         const iAudioClip = await loadAudio('./Project1/intro.mp3');
 
@@ -47,6 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         audioIntro.setBuffer(iAudioClip);
         audioIntro.setRefDistance(70);
+        
+        anchor.onTargetFound = () => {
+            audio.play();
+        }
+        anchor.onTargetLost = () => {
+        audio.pause();
+        }
         //audioIntro.setLoop(false);
 
         //when hit occures = () => {
