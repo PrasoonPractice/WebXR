@@ -1,21 +1,28 @@
-<html>
+﻿<html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./libs/mindar/mindar-image-three.prod.js"></script>
-    <script src="./assetload.js" type="module"></script>
+    <script src="./main.js" type="module"></script>
+    <script src="./hitTest.js" type="module"></script>
+
     <style>
       html, body {position: relative; margin: 0; width: 100%; height: 100%; overflow: hidden}
  
       #ar-div {
-	//width: 600px; 
-	//height: 900px;
-	visibility: hidden;
-
-	background: #fffffe;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: black;
+    	visibility: hidden;
+    	background: #fffffe;
+	    display: flex;
+    	justify-content: center;
+	    align-items: center;
+	    color: black;
+      }
+      #ar-icons {
+    	visibility: hidden;
+    	background: #f7f0d2;
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+    	color: black;
       }
     </style>
   </head>
@@ -23,6 +30,13 @@
       <div id="ar-div" class = "column">
           <div class = "row" ><img src="./Project1/card.jpg", alt="company_logo", width ="640" height ="400" ><p><br></p>
 		  <h1 align = "center">Name:<u><i>Prasoon Srivastava</i></u></h1><br><h2 align = "center"><u>Employee</u></h2></div>
+      </div>
+      <div id="ar-icons" class = "column">
+          <div><a herf = "https://falconicx.com/"><img src="./Project1/web.png", alt="website_icon", width ="80" height ="80" ></a><p><br></p></div>
+          <div><a herf = "https://falconicx.com/"><img src="./Project1/location.png", alt="location_icon", width ="80" height ="80" ></a><p><br></p></div>
+          <div><a herf = "tel://+919453275960"><img src="./Project1/call.png", alt="call_icon", width ="80" height ="80" ></a><p><br></p></div>
+          <div><a herf = "https://wa.me/919453275960"><img src="./Project1/message.png", alt="message_icon", width ="80" height ="80" ></a><p><br></p></div>
+          <div><a herf = "mailto:contact@falconicx.com?subject=Hello"><img src="./Project1/email.png", alt="email_icon", width ="80" height ="80" ></a><p><br></p></div>
       </div>
   </body>
 </html>
