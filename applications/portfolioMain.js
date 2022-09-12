@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (o === messageIcon) {
                         window.location.href = "https://wa.me/919453275960";
                     } else if (o === emailIcon) {
-                    window.location.href = "mailto:contact@falconicx.com?subject=Hello";
+                        window.location.href = "mailto:contact@falconicx.com?subject=Hello";
                     }
                 }
             }
