@@ -1,12 +1,12 @@
 import { CSS3DObject } from './libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js';
-import {mockWithVideo} from './libs/camera-mock.js';
+import {mockWithImage} from './libs/camera-mock.js';
 import { loadGLTF, loadAudio, loadTextures } from './libs/loader.js';
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
     const start = async () => {
 
-        mockWithVideo('./assets/mock-videos/portfolio1.mp4');
+        mockWithImage('./assets/targets/card.png');
         // initialize MindAR 
         const mindarThree = new window.MINDAR.IMAGE.MindARThree({
             container: document.body,
@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const planeGeometry = new THREE.PlaneGeometry(1, 0.552);
         const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         const card = new THREE.Mesh(planeGeometry, cardMaterial);
+        card.position.set(0, 0, 0);
 
         const iconGeometry = new THREE.CircleGeometry(0.075, 32);
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
@@ -50,15 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        webIcon.position.set(-0.42, -1, 0);
-        locationIcon.position.set(-0.14, -1, 0);
-        callIcon.position.set(0.14, -1, 0);
-        messageIcon.position.set(0.42, -1, 0);
-        emailIcon.position.set(0.70, -1, 0);
+        webIcon.position.set(-0.42, -1.5, 0);
+        locationIcon.position.set(-0.14, -1.5, 0);
+        callIcon.position.set(0.14, -1.5, 0);
+        messageIcon.position.set(0.42, -1.5, 0);
+        emailIcon.position.set(0.70, -1.5, 0);
 
         const avatar = await loadGLTF('./Project1/Avatar.glb');
         avatar.scene.scale.set(0.4, 0.4, 0.4);
-        avatar.scene.position.set(-0.70, -1, -0.3);
+        avatar.scene.position.set(-0.75, -1.5, -0.3);
 
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(avatar.scene);
@@ -70,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(messageIcon);
 
         const obj = new CSS3DObject(document.querySelector("#ar-div"));
+        obj.scale.set(1, 0.552);
         obj.position.set(0, -1, 0);
         obj.visible = true;
 
