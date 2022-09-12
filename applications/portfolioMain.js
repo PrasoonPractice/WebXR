@@ -123,10 +123,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.location.href = "tel://+919453275960";
                     } else if (o === messageIcon) {
                         window.location.href = "https://wa.me/919453275960";
-                    }
                     } else if (o === emailIcon) {
-                        textObj.visible = true;
-                        textElement.innerHTML = "Vancouver, Canada";
+                    window.location.href = "mailto:contact@falconicx.com?subject=Hello";
                     }
                 }
             }
