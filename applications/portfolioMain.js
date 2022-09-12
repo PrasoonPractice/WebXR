@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = new THREE.Mesh(planeGeometry, cardMaterial);
         card.position.set(0, 0, 0);
 
-        const iconGeometry = new THREE.CircleGeometry(0.5, 32);
+        const iconGeometry = new THREE.CircleGeometry(1, 32);
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
         const callMaterial = new THREE.MeshBasicMaterial({ map: callTexture });
