@@ -1,12 +1,12 @@
 import { CSS3DObject } from './libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js';
-import {mockWithImage} from './libs/camera-mock.js';
+//import {mockWithImage} from './libs/camera-mock.js';
 import { loadGLTF, loadAudio, loadTextures } from './libs/loader.js';
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
     const start = async () => {
 
-       mockWithImage('./Project1/mock.jpg');
+       //mockWithImage('./Project1/mock.jpg');
         // initialize MindAR 
         const mindarThree = new window.MINDAR.IMAGE.MindARThree({
             container: document.body,
@@ -33,19 +33,19 @@ document.addEventListener('DOMContentLoaded', () => {
             './Project1/email.png'
         ]);
 
-        //const planeGeometry = new THREE.PlaneGeometry(1.63, 0.5);
-        //const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
-        //const card = new THREE.Mesh(planeGeometry, cardMaterial);
-        const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
-        const card = new THREE.Sprite(cardMaterial);
+        const planeGeometry = new THREE.PlaneGeometry(1.63, 0.5);
+        const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
+        const card = new THREE.Mesh(planeGeometry, cardMaterial);
+        //const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
+        //const card = new THREE.Sprite(cardMaterial);
         card.position.set(0.5, 0.05, 0);
 
         const iconGeometry = new THREE.CircleGeometry(0.12, 32);
-        const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture, transparent: false, opacity: 0.5 });
-        const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture, transparent: false, opacity: 0.5 });
-        const callMaterial = new THREE.MeshBasicMaterial({ map: callTexture, transparent: false, opacity: 0.5 });
-        const messageMaterial = new THREE.MeshBasicMaterial({ map: messageTexture, transparent: false, opacity: 0.5 });
-        const emailMaterial = new THREE.MeshBasicMaterial({ map: emailTexture, transparent: false, opacity: 0.5 });
+        const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
+        const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
+        const callMaterial = new THREE.MeshBasicMaterial({ map: callTexture });
+        const messageMaterial = new THREE.MeshBasicMaterial({ map: messageTexture });
+        const emailMaterial = new THREE.MeshBasicMaterial({ map: emailTexture});
 
         const webIcon = new THREE.Mesh(iconGeometry, webMaterial);
         const locationIcon = new THREE.Mesh(iconGeometry, locationMaterial);
@@ -95,9 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //anchor.onTargetFound = () => {
         //    audio.play();
         //}
-        //anchor.onTargetLost = () => {
-        //    audio.pause();
-        //}
 
         // handle buttons
         webIcon.userData.clickable = true;
@@ -105,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
         callIcon.userData.clickable = true;
         messageIcon.userData.clickable = true;
         emailIcon.userData.clickable = true;
-
 
         document.body.addEventListener('click', (e) => {
             const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -122,8 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (o.userData.clickable) {
                     if (o === avatar) {
-                        audio.play();
                         console.log("intro");
+                        audio.play();
+                        anchor.onTargetLost = () => {
+                            audio.pause();
+                        }                        
                     } else if (o === webIcon) {
                         window.location.href = " https://falconicx.com/";
                     } else if (o === locationIcon) {
