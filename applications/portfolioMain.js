@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //const planeGeometry = new THREE.PlaneGeometry(1.63, 0.5);
         //const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         //const card = new THREE.Mesh(planeGeometry, cardMaterial);
-        const cardMaterial = new THREE.SpriteMaterial({{ map: cardTexture, transparent: true });
+        const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: true });
         const card = new THREE.Sprite(cardMaterial);
         card.position.set(0.6, 0.25, 0);
 
