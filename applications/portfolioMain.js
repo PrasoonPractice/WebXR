@@ -68,8 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(messageIcon);
 
         const obj = new CSS3DObject(document.querySelector("#ar-div"));
-        textObj.position.set(0, -0.5, 0);
-        textObj.visible = true;
+        obj.position.set(0, -0.5, 0);
+        obj.visible = true;
 
         const cssAnchor = mindarThree.addCSSAnchor(0);
         cssAnchor.group.add(obj);
@@ -115,7 +115,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     o = o.parent;
                 }
                 if (o.userData.clickable) {
-                    if (o === webIcon) {
+                    if (o === avatar) {
+                        console.log("intro");
+                    } else if (o === webIcon) {
                         window.location.href = " https://falconicx.com/";
                     } else if (o === locationIcon) {
                         console.log("loc");
