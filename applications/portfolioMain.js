@@ -33,10 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             './Project1/email.png'
         ]);
 
-        const planeGeometry = new THREE.PlaneGeometry(1.63, 0.5);
-        const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
-        const card = new THREE.Mesh(planeGeometry, cardMaterial);
-        card.position.set(0.7, 0, 0);
+        //const planeGeometry = new THREE.PlaneGeometry(1.63, 0.5);
+        //const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
+        //const card = new THREE.Mesh(planeGeometry, cardMaterial);
+        const cardMaterial = new THREE.SpriteMaterial({{ map: cardTexture, transparent: true });
+        const card = new THREE.Sprite(cardMaterial);
+        card.position.set(0.6, 0.25, 0);
 
         const iconGeometry = new THREE.CircleGeometry(0.12, 32);
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const avatar = await loadGLTF('./Project1/Avatar.glb');
         avatar.scene.scale.set(1, 1, 1);
-        avatar.scene.position.set(-0.75, -0.5, -0.3);
+        avatar.scene.position.set(-0.75, -0.6, -0.3);
 
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(avatar.scene);
@@ -71,13 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(messageIcon);
 
         const obj = new CSS3DObject(document.querySelector("#ar-div"));
-        obj.position.set(0, -0.2, 0);
+        obj.scale.set(1.63, 0.5);
+        obj.position.set(0.6, -0.05, 0);
         obj.visible = true;
 
         const cssAnchor = mindarThree.addCSSAnchor(0);
         cssAnchor.group.add(obj);
 
-        const audioClip = await loadAudio('./Project1/background.mp3');
+        const audioClip = await loadAudio('./Project1/intro.mp3');
 
         const listener = new THREE.AudioListener();
         camera.add(listener);
@@ -86,15 +89,15 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(audio);
 
         audio.setBuffer(audioClip);
-        audio.setRefDistance(150);
-        audio.setLoop(true);
+        audio.setRefDistance(40);
+        audio.setLoop(false);
 
-        anchor.onTargetFound = () => {
-            audio.play();
-        }
-        anchor.onTargetLost = () => {
-            audio.pause();
-        }
+        //anchor.onTargetFound = () => {
+        //    audio.play();
+        //}
+        //anchor.onTargetLost = () => {
+        //    audio.pause();
+        //}
 
         // handle buttons
         webIcon.userData.clickable = true;
@@ -119,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (o.userData.clickable) {
                     if (o === avatar) {
+                        audio.play();
                         console.log("intro");
                     } else if (o === webIcon) {
                         window.location.href = " https://falconicx.com/";
