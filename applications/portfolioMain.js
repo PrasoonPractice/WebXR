@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageTexture,
             emailTexture,
         ] = await loadTextures([
-            './Project1/card.jpg',
+            './Project1/card.png',
             './Project1/web.png',
             './Project1/location.png',
             './Project1/call.png',
