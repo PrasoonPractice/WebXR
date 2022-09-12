@@ -59,12 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         messageIcon.position.set(0.42, -0.65, 0);
         emailIcon.position.set(0.70, -0.65, 0);
 
-        const avatar = await loadGLTF('./Project1/Avatar.glb');
-        avatar.scene.scale.set(1, 0.85, 1);
-        avatar.scene.position.set(-0.75, -0.6, -0.3);
+        //const avatar = await loadGLTF('./Project1/Avatar.glb');
+        //avatar.scene.scale.set(1, 0.85, 1);
+        //avatar.scene.position.set(-0.75, -0.6, -0.3);
 
         const anchor = mindarThree.addAnchor(0);
-        anchor.group.add(avatar.scene);
+        //anchor.group.add(avatar.scene);
         anchor.group.add(card);
         anchor.group.add(emailIcon);
         anchor.group.add(webIcon);
@@ -95,8 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
         //anchor.onTargetFound = () => {
         //    audio.play();
         //}
+        //anchor.onTargetLost = () => {
+        //    audio.pause();
+        //}  
 
         // handle buttons
+        //avatar.scene.userData.clickable = true;
         webIcon.userData.clickable = true;
         locationIcon.userData.clickable = true;
         callIcon.userData.clickable = true;
@@ -117,13 +121,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     o = o.parent;
                 }
                 if (o.userData.clickable) {
-                    if (o === avatar) {
-                        console.log("intro");
-                        audio.play();
-                        anchor.onTargetLost = () => {
-                            audio.pause();
-                        }                        
-                    } else if (o === webIcon) {
+                    //if (o === avatar) {
+                    //    console.log("intro");
+                    //    audio.play();                         
+                    //} else 
+                    if (o === webIcon) {
                         window.location.href = " https://falconicx.com/";
                     } else if (o === locationIcon) {
                         console.log("loc");
