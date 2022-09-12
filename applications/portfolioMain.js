@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
         const callMaterial = new THREE.MeshBasicMaterial({ map: callTexture });
-        const messageMaterial = new THREE.MeshBasicMaterial({ map: Texture });
+        const messageMaterial = new THREE.MeshBasicMaterial({ map: messageTexture });
         const emailMaterial = new THREE.MeshBasicMaterial({ map: emailTexture });
 
         const webIcon = new THREE.Mesh(iconGeometry, webMaterial);
