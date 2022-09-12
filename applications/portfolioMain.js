@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const avatar = await loadGLTF('./Project1/Avatar.glb');
         avatar.scene.scale.set(0.4, 0.4, 0.4);
-        avatar.scene.position.set(0, -1, -0.3);
+        avatar.scene.position.set(-0.70, -1, -0.3);
 
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(avatar.scene);
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(messageIcon);
 
         const obj = new CSS3DObject(document.querySelector("#ar-div"));
-        obj.position.set(0, -0.5, 0);
+        obj.position.set(0, -1, 0);
         obj.visible = true;
 
         const cssAnchor = mindarThree.addCSSAnchor(0);
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(audio);
 
         audio.setBuffer(audioClip);
-        audio.setRefDistance(100);
+        audio.setRefDistance(60);
         audio.setLoop(true);
 
         anchor.onTargetFound = () => {
@@ -142,10 +142,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.scale.set(iconScale, iconScale, iconScale);
             });
 
-
             renderer.render(scene, camera);
             cssRenderer.render(cssScene, camera);
         });
     }
+    
     start();
 });
