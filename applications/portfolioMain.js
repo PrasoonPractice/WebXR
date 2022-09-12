@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const planeGeometry = new THREE.PlaneGeometry(1.63, 0.5);
         const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         const card = new THREE.Mesh(planeGeometry, cardMaterial);
-        card.position.set(0.3, 0.5, 0);
+        card.position.set(0.7, 0, 0);
 
         const iconGeometry = new THREE.CircleGeometry(0.12, 32);
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(messageIcon);
 
         const obj = new CSS3DObject(document.querySelector("#ar-div"));
-        obj.position.set(0, -0.5, 0);
+        obj.position.set(0, -0.2, 0);
         obj.visible = true;
 
         const cssAnchor = mindarThree.addCSSAnchor(0);
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(audio);
 
         audio.setBuffer(audioClip);
-        audio.setRefDistance(60);
+        audio.setRefDistance(150);
         audio.setLoop(true);
 
         anchor.onTargetFound = () => {
