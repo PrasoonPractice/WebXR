@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const planeGeometry = new THREE.PlaneGeometry(1.63, 0.5);
         const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         const card = new THREE.Mesh(planeGeometry, cardMaterial);
-        card.position.set(0, 0, 0);
+        card.position.set(, 2, 0);
 
-        const iconGeometry = new THREE.CircleGeometry(1, 32);
+        const iconGeometry = new THREE.CircleGeometry(0.12, 32);
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
         const callMaterial = new THREE.MeshBasicMaterial({ map: callTexture });
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const avatar = await loadGLTF('./Project1/Avatar.glb');
         avatar.scene.scale.set(1, 1, 1);
-        avatar.scene.position.set(-0.75, 0, -0.3);
+        avatar.scene.position.set(-0.75, -0.5, -0.3);
 
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(avatar.scene);
