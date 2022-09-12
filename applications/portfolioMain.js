@@ -1,12 +1,12 @@
 import { CSS3DObject } from './libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js';
-import {mockWithImage} from './libs/camera-mock.js';
+//import {mockWithImage} from './libs/camera-mock.js';
 import { loadGLTF, loadAudio, loadTextures } from './libs/loader.js';
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
     const start = async () => {
 
-        mockWithImage('./assets/targets/card.png');
+       // mockWithImage('./assets/targets/card.png');
         // initialize MindAR 
         const mindarThree = new window.MINDAR.IMAGE.MindARThree({
             container: document.body,
