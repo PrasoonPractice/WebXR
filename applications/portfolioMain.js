@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const planeGeometry = new THREE.PlaneGeometry(1.63, 0.5);
         const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         const card = new THREE.Mesh(planeGeometry, cardMaterial);
-        card.position.set(0.3, 2, 0);
+        card.position.set(0.3, 0.5, 0);
 
         const iconGeometry = new THREE.CircleGeometry(0.12, 32);
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
@@ -71,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(messageIcon);
 
         const obj = new CSS3DObject(document.querySelector("#ar-div"));
-        obj.scale.set(1.63, 0.5);
         obj.position.set(0, -0.5, 0);
         obj.visible = true;
 
