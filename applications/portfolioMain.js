@@ -33,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
             './Project1/email.png'
         ]);
 
-        const planeGeometry = new THREE.PlaneGeometry(1, 0.552);
+        const planeGeometry = new THREE.PlaneGeometry(1.63, 0.5);
         const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         const card = new THREE.Mesh(planeGeometry, cardMaterial);
         card.position.set(0, 0, 0);
 
-        const iconGeometry = new THREE.CircleGeometry(0.075, 32);
+        const iconGeometry = new THREE.CircleGeometry(0.5, 32);
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
         const callMaterial = new THREE.MeshBasicMaterial({ map: callTexture });
@@ -51,15 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        webIcon.position.set(-0.42, -1.5, 0);
-        locationIcon.position.set(-0.14, -1.5, 0);
-        callIcon.position.set(0.14, -1.5, 0);
-        messageIcon.position.set(0.42, -1.5, 0);
-        emailIcon.position.set(0.70, -1.5, 0);
+        webIcon.position.set(-0.42, -0.7, 0);
+        locationIcon.position.set(-0.14, -0.7, 0);
+        callIcon.position.set(0.14, -0.7, 0);
+        messageIcon.position.set(0.42, -0.7, 0);
+        emailIcon.position.set(0.70, -0.7, 0);
 
         const avatar = await loadGLTF('./Project1/Avatar.glb');
-        avatar.scene.scale.set(0.4, 0.4, 0.4);
-        avatar.scene.position.set(-0.75, -1.5, -0.3);
+        avatar.scene.scale.set(1, 1, 1);
+        avatar.scene.position.set(-0.75, 0, -0.3);
 
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(avatar.scene);
@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(messageIcon);
 
         const obj = new CSS3DObject(document.querySelector("#ar-div"));
-        obj.scale.set(1, 0.552);
-        obj.position.set(0, -1, 0);
+        obj.scale.set(1.63, 0.5);
+        obj.position.set(0, -0.5, 0);
         obj.visible = true;
 
         const cssAnchor = mindarThree.addCSSAnchor(0);
@@ -138,14 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const clock = new THREE.Clock();
         await mindarThree.start();
-        renderer.setAnimationLoop(() => {
-            const delta = clock.getDelta();
-            const elapsed = clock.getElapsedTime();
-            const iconScale = 1 + 0.2 * Math.sin(elapsed * 5);
-            [webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
-                icon.scale.set(iconScale, iconScale, iconScale);
-            });
-
+        renderer.setAnimationLoop(() => {   
             renderer.render(scene, camera);
             cssRenderer.render(cssScene, camera);
         });
