@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	                item.position.setFromMatrixPosition(new THREE.Matrix4().fromArray(hit.getPose(referenceSpace).transform.matrix));
                     	counter = true;
             }
-        }
 	    renderer.render(scene, camera);
       });
     });
