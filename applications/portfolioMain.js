@@ -39,11 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = new THREE.Mesh(planeGeometry, cardMaterial);
         //const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         //const card = new THREE.Sprite(cardMaterial);
-        card.position.set(0.5, 0.05, 0);
+        card.position.set(0.5, 0.4, 0);
         
         //const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
         const iconGeometry = new THREE.CircleGeometry(0.15, 32);
+        const mapiconGeometry = new THREE.CircleGeometry(0.2, 32);
         const playMaterial = new THREE.MeshBasicMaterial({ map: playTexture });
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
@@ -53,12 +54,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const playIcon = new THREE.Mesh(iconGeometry, playMaterial);
         const webIcon = new THREE.Mesh(iconGeometry, webMaterial);
-        const locationIcon = new THREE.Mesh(iconGeometry, locationMaterial);
+        const locationIcon = new THREE.Mesh(mapiconGeometry, locationMaterial);
         const callIcon = new THREE.Mesh(iconGeometry, callMaterial);
         const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        playIcon.position.set(-0.80, -0.7, 0.5);
+        playIcon.position.set(-0.80, 0.35, 0.5);
         webIcon.position.set(-0.14, -0.60, 0);
         locationIcon.position.set(0.16, -0.60, 0);
         callIcon.position.set(0.46, -0.60, 0);
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return ctx.canvas;
         }       
 
-        const canvas =  makeLabelCanvas(40, name);
+        const canvas =  makeLabelCanvas(30, name);
         const texture = new THREE.CanvasTexture(canvas);
         // because our canvas is likely not a power of 2
         // in both dimensions set the filtering appropriately.
@@ -140,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(audio);
 
         audio.setBuffer(audioClip);
-        audio.setRefDistance(20);
+        audio.setRefDistance(200);
         audio.setLoop(false);
 
         //anchor.onTargetFound = () => {
@@ -171,7 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (o.userData.clickable) {
                     if (o === playIcon) {
                         console.log("intro");
-                        audio.play();                         
+                        audio.play();
+                        playIcon.visible = false;
                     } else if (o === webIcon) {
                         window.location.href = " https://falconicx.com/";
                     } else if (o === locationIcon) {
@@ -182,6 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.location.href = "https://wa.me/919453275960";
                     } else if (o === emailIcon) {
                         window.location.href = "mailto:contact@falconicx.com?subject=Hello";
+                    }
+                    if (functionisPlaying(audio)) {
+                       playIcon.visible = false;
+                    }) else {
+                        playIcon.visible = true;
                     }
                     anchor.onTargetLost = () => {
                         audio.pause();
