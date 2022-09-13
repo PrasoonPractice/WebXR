@@ -94,11 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.fillText(name, borderSize, borderSize);
 
             return ctx.canvas;
-        }
+        }       
 
-        makeLabelCanvas(150, document.querySelector("#ar-div"));
-
-        const canvas = makeLabelCanvas(size, name);
+        const canvas =  makeLabelCanvas(150, document.querySelector("#ar-div"));
         const texture = new THREE.CanvasTexture(canvas);
         // because our canvas is likely not a power of 2
         // in both dimensions set the filtering appropriately.
