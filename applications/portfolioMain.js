@@ -144,14 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.setRefDistance(600);
         audio.setLoop(false);
         
-        if (audio.paused) {
-            playIcon.visible = true;
-        }   
-        anchor.onTargetLost = () => {
-            audio.pause();
-            playIcon.visible = true;
-        }  
-
         //anchor.onTargetFound = () => {
         //    audio.play();
         //}
@@ -164,6 +156,13 @@ document.addEventListener('DOMContentLoaded', () => {
         messageIcon.userData.clickable = true;
         emailIcon.userData.clickable = true;
 
+                if (audio.paused) {
+            playIcon.visible = true;
+        }   
+        anchor.onTargetLost = () => {
+            audio.pause();
+            playIcon.visible = true;
+        }
         document.body.addEventListener('click', (e) => {
             const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
             const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
