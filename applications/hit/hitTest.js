@@ -237,11 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	    if (audio.paused) {
                 playIcon.visible = true;
-            }   
-            anchor.onTargetLost = () => {
-                audio.pause();
-                playIcon.visible = true;
-            }
+            }  
 	renderer.render(scene, camera);
       });
     });
