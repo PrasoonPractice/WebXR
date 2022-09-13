@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         scene.add(light);
 
         const [
+            playTexture,
             cardTexture,
             webTexture,
             locationTexture,
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageTexture,
             emailTexture,
         ] = await loadTextures([
+            './Project1/play.png',
             './Project1/card.png',
             './Project1/web.png',
             './Project1/location.png',
@@ -37,32 +39,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = new THREE.Mesh(planeGeometry, cardMaterial);
         //const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         //const card = new THREE.Sprite(cardMaterial);
-        card.position.set(0.5, 0.05, 0);
+        card.position.set(0.5, 0, 0);
         
-        const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
+        //const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
         const iconGeometry = new THREE.CircleGeometry(0.12, 32);
+        const playMaterial = new THREE.MeshBasicMaterial({ map: playTexture });
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
         const callMaterial = new THREE.MeshBasicMaterial({ map: callTexture });
         const messageMaterial = new THREE.MeshBasicMaterial({ map: messageTexture });
         const emailMaterial = new THREE.MeshBasicMaterial({ map: emailTexture });
 
+        const playIcon = new THREE.Mesh(iconGeometry, playMaterial);
         const webIcon = new THREE.Mesh(iconGeometry, webMaterial);
         const locationIcon = new THREE.Mesh(iconGeometry, locationMaterial);
         const callIcon = new THREE.Mesh(iconGeometry, callMaterial);
         const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        webIcon.position.set(-0.42, -0.65, 0);
-        locationIcon.position.set(-0.14, -0.65, 0);
-        callIcon.position.set(0.14, -0.65, 0);
-        messageIcon.position.set(0.42, -0.65, 0);
-        emailIcon.position.set(0.70, -0.65, 0);
+        playIcon.position.set(-0.8, -0.7, 0.02);
+        webIcon.position.set(-0.14, -0.65, 0);
+        locationIcon.position.set(0.14, -0.65, 0);
+        callIcon.position.set(0.42, -0.65, 0);
+        messageIcon.position.set(0.70, -0.65, 0);
+        emailIcon.position.set(0.98, -0.65, 0);
 
         const avatar = await loadGLTF('./Project1/Avatar.glb');
         avatar.scene.scale.set(1, 0.85, 1);
-        avatar.scene.position.set(-0.75, -0.6, -0.3);
+        avatar.scene.position.set(-0.8, -0.7, -0.3);
 
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(avatar.scene);
@@ -111,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             transparent: true,
         });
 
-        const label = new THREE.Mesh(labelGeometry, labelMaterial);
+        const label = new THREE.Mesh(planeGeometry, labelMaterial);
         label.position.set(0.5, -0.06, 0.003);
         anchor.group.add(label);
 
@@ -132,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //}
         
          //handle buttons
-        avatar.userData.clickable = true;
+        playIcon.userData.clickable = true;
         webIcon.userData.clickable = true;
         locationIcon.userData.clickable = true;
         callIcon.userData.clickable = true;
@@ -153,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     o = o.parent;
                 }
                 if (o.userData.clickable) {
-                    if (o === avatar) {
+                    if (o === playIcon) {
                         console.log("intro");
                         audio.play();                         
                     } else if (o === webIcon) {
