@@ -22,10 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.xr.enabled = true;
 
-    const arButton = ARButton.createButton(renderer, {requiredFeatures: ['hit-test'], optionalFeatures: ['dom-overlay'], domOverlay: {root: document.body}});
-    document.body.appendChild(renderer.domElement);
-    document.body.appendChild(arButton);
-
     const [
             playTexture,
             cardTexture,
@@ -153,6 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
         callIcon.userData.clickable = true;
         messageIcon.userData.clickable = true;
         emailIcon.userData.clickable = true;
+	  
+    const arButton = ARButton.createButton(renderer, {requiredFeatures: ['hit-test'], optionalFeatures: ['dom-overlay'], domOverlay: {root: document.body}});
+    document.body.appendChild(renderer.domElement);
+    document.body.appendChild(arButton);
+
+
 
 	    document.body.addEventListener('click', (e) => {
             const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
