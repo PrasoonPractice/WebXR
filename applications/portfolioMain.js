@@ -141,8 +141,16 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(audio);
 
         audio.setBuffer(audioClip);
-        audio.setRefDistance(200);
+        audio.setRefDistance(600);
         audio.setLoop(false);
+        
+        if (audio.paused) {
+            playIcon.visible = true;
+        }   
+        anchor.onTargetLost = () => {
+            audio.pause();
+            playIcon.visible = true;
+        }  
 
         //anchor.onTargetFound = () => {
         //    audio.play();
@@ -185,14 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (o === emailIcon) {
                         window.location.href = "mailto:contact@falconicx.com?subject=Hello";
                     }
-                    while (functionisPlaying(audio)) {
-                        playIcon.visible = false;
-                    }
-                    playIcon.visible = true;                   
-                    anchor.onTargetLost = () => {
-                        audio.pause();
-                        playIcon.visible = true;
-                    }  
                 }
             }
         });
