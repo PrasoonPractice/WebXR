@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const avatar = await loadGLTF('../Project1/Avatar.glb');
     controller.addEventListener('select', () => {
     
-    //avatar.scene.scale.set(1, 0.85, 1);
+    avatar.scene.scale.set(1, 0.85, 1);
     //avatar.scene.position.set(-0.8, -0.75, -0.3);
    
     const canvas = new THREE.Group();
