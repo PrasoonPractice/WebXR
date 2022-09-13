@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     		const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
     		scene.add(light);
+		
+		const avatar = await loadGLTF('../Project1/Avatar.glb');
 
     		const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     		renderer.setPixelRatio(window.devicePixelRatio);
@@ -34,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             	//model.castShadow = true;
             	//model.receiveShadow = true;
           	//}
-		
-		const avatar = await loadGLTF('../Project1/Avatar.glb');
-		
+				
     		controller.addEventListener('select', () => {
 	    		avatar.scene.quaternion.setFromRotationMatrix(controller.matrixWorld);
 	    		avatar.scene.position.applyMatrix4(controller.matrixWorld);
