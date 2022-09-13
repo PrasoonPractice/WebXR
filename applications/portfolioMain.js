@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return ctx.canvas;
         }       
 
-        const canvas =  makeLabelCanvas(60, name);
+        const canvas =  makeLabelCanvas(40, name);
         const texture = new THREE.CanvasTexture(canvas);
         // because our canvas is likely not a power of 2
         // in both dimensions set the filtering appropriately.
