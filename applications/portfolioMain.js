@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.font = font;
             ctx.textBaseline = 'top';
 
-            ctx.fillStyle = none;
+            ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
             ctx.fillRect(0, 0, width, height);
             ctx.fillStyle = 'black';
             ctx.fillText(name, borderSize, borderSize);
