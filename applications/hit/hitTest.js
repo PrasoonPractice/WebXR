@@ -1,225 +1,81 @@
-import { loadGLTF } from '../libs/loader.js';
+import {loadGLTF} from "../libs/loader.js";
 import * as THREE from '../libs/three.js-r132/build/three.module.js';
+import {ARButton} from '../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
-let renderer = null;
-let scene = null;
-let camera = null;
-let model = null;
-let mixer = null;
-let action = null;
-let reticle = null;
-let lastFrame = Date.now();
-      
-const initScene = (gl, session) => {
+// make clone object not sharing materials
+//const deepClone = (obj) => {
+//  const newObj = obj.clone();
+//  newObj.traverse((o) => {
+//    if (o.isMesh) {
+//      o.material = o.material.clone();
+//    }
+//  });
+//  return newObj;
+//}
 
-        scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+document.addEventListener('DOMContentLoaded', () => {
+  const initialize = async() => {
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 20);
 
-        // load our gltf model
-        var loader = new GLTFLoader();
-        loader.load(
-        '../Project1/avatar.glb',
-        (gltf) => {
-        	model = gltf.scene;
-            	model.scale.set(0.1, 0.1, 0.1);
-           	model.castShadow = true;
-         	model.receiveShadow = true;
-	        },
-          () => {},
-          (error) => console.error(error)
-        );
+    const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
+    scene.add(light);
 
-        var light = new THREE.PointLight(0xffffff, 2, 100); // soft white light
-        light.position.z = 1;
-        light.position.y = 5;
-        scene.add(light);
+    const reticleGeometry = new THREE.RingGeometry( 0.15, 0.2, 32 ).rotateX(- Math.PI / 2);
+    const reticleMaterial = new THREE.MeshBasicMaterial(); 
+    const reticle = new THREE.Mesh(reticleGeometry, reticleMaterial);
+    reticle.matrixAutoUpdate = false;
+    reticle.visible = false;
+    scene.add(reticle);
+    
+    const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.xr.enabled = true;
 
-        // create and configure three.js renderer with XR support
-        renderer = new THREE.WebGLRenderer({
-          antialias: true,
-          alpha: true,
-          autoClear: true,
-          context: gl,
-        });
-	
-        renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.xr.enabled = true;
-        renderer.xr.setReferenceSpaceType('local');
-        renderer.xr.setSession(session);
+    const arButton = ARButton.createButton(renderer, {requiredFeatures: ['hit-test'], optionalFeatures: ['dom-overlay'], domOverlay: {root: document.body}});
+    document.body.appendChild(renderer.domElement);
+    document.body.appendChild(arButton);
 
-        // simple sprite to indicate detected surfaces
-        reticle = new THREE.Mesh(
-          new THREE.RingBufferGeometry(0.15, 0.2, 32).rotateX(-Math.PI / 2),
-          new THREE.MeshPhongMaterial({ color: 0x0fff00 })
-       );
-        // we will update it's matrix later using WebXR hit test pose matrix
-        reticle.matrixAutoUpdate = false;
-        reticle.visible = false;
-        scene.add(reticle);
-      };
+    const avatar = await loadGLTF('../Project1/Avatar.glb');
+    avatar.scene.scale.set(1, 0.85, 1);
+    avatar.scene.position.set(-0.8, -0.75, -0.3);
 
-      // button to start XR experience
-      const xrButton = document.getElementById('xr-button');
-      // to display debug information
-      const info = document.getElementById('info');
-      // to control the xr session
-      let xrSession = null;
-      // reference space used within an application https://developer.mozilla.org/en-US/docs/Web/API/XRSession/requestReferenceSpace
-      let xrRefSpace = null;
-      // for hit testing with detected surfaces
-      let xrHitTestSource = null;
+    const item = new THREE.Group();
+    item.add(avatar.scene);
+    item.visible = false;
 
-      // Canvas OpenGL context used for rendering
-      let gl = null;
+    const controller = renderer.xr.getController(0);
+    scene.add(controller);
+    controller.addEventListener('select', (e) => {
+    console.log("select");
+    });
+    
+    renderer.xr.addEventListener("sessionstart", async (e) => {
+      const session = renderer.xr.getSession();
+      const viewerReferenceSpace = await session.requestReferenceSpace("viewer");
+      const hitTestSource = await session.requestHitTestSource({space: viewerReferenceSpace});
+      let counter = false;
 
-      function checkXR() {
-        if (!window.isSecureContext) {
-          document.getElementById("warning").innerText = "WebXR unavailable. Please use secure context";
+      renderer.setAnimationLoop((timestamp, frame) => {
+	    if (!frame) return;
+	    const hitTestResults = frame.getHitTestResults(hitTestSource);
+
+        if (hitTestResults.length) {
+	        const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
+            const hit = hitTestResults[0];
+
+            if (avatar) {
+	            if (!counter) {
+	                item.visible = true;
+	                item.position.setFromMatrixPosition(new THREE.Matrix4().fromArray(hit.getPose(referenceSpace).transform.matrix));
+                    counter = true;
+                }
+            }
         }
-        if (navigator.xr) {
-          navigator.xr.addEventListener('devicechange', checkSupportedState);
-          checkSupportedState();
-        } else {
-          document.getElementById("warning").innerText = "WebXR unavailable for this browser"; 
-        }
-      }
-
-      function checkSupportedState() {
-        navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-          if (supported) {
-            xrButton.innerHTML = 'Enter AR';
-            xrButton.addEventListener('click', onButtonClicked);
-          } else {
-            xrButton.innerHTML = 'AR not found';
-          }
-          xrButton.disabled = !supported;
-        });
-      }
-
-      function onButtonClicked() {
-        if (!xrSession) {
-            navigator.xr.requestSession('immersive-ar', {
-                optionalFeatures: ['dom-overlay'],
-                requiredFeatures: ['local', 'hit-test'],
-                domOverlay: {root: document.getElementById('overlay')}
-            }).then(onSessionStarted, onRequestSessionError);
-        } else {
-          xrSession.end();
-        }
-      }
-
-      function onSessionStarted(session) {
-        xrSession = session;
-        xrButton.innerHTML = 'Exit AR';
-
-        // Show which type of DOM Overlay got enabled (if any)
-        if (session.domOverlayState) {
-          info.innerHTML = 'DOM Overlay type: ' + session.domOverlayState.type;
-        }
-
-        // create a canvas element and WebGL context for rendering
-        session.addEventListener('end', onSessionEnded);
-        let canvas = document.createElement('canvas');
-        gl = canvas.getContext('webgl', { xrCompatible: true });
-        session.updateRenderState({ baseLayer: new XRWebGLLayer(session, gl) });
-
-        // here we ask for viewer reference space, since we will be casting a ray
-        // from a viewer towards a detected surface. The results of ray and surface intersection
-        // will be obtained via xrHitTestSource variable
-        session.requestReferenceSpace('viewer').then((refSpace) => {
-          session.requestHitTestSource({ space: refSpace }).then((hitTestSource) => {
-            xrHitTestSource = hitTestSource;
-          });
-        });
-
-        session.requestReferenceSpace('local').then((refSpace) => {
-          xrRefSpace = refSpace;
-          session.requestAnimationFrame(onXRFrame);
-        });
-
-        document.getElementById("overlay").addEventListener('click', placeObject);
-
-        // initialize three.js scene
-        initScene(gl, session);
-      }
-
-      function onRequestSessionError(ex) {
-        info.innerHTML = "Failed to start AR session.";
-        console.error(ex.message);
-      }
-
-      function onSessionEnded(event) {
-        xrSession = null;
-        xrButton.innerHTML = 'Enter AR';
-        info.innerHTML = '';
-        gl = null;
-        if (xrHitTestSource) xrHitTestSource.cancel();
-        xrHitTestSource = null;
-      }
-
-      function placeObject() {
-        if (reticle.visible && model) {
-          reticle.visible = false;
-          xrHitTestSource.cancel();
-          xrHitTestSource = null;
-          // we'll be placing our object right where the reticle was
-          const pos = reticle.getWorldPosition();
-          scene.remove(reticle);
-          model.position.set(pos.x, pos.y, pos.z);
-          scene.add(model);
-
-          // start object animation right away
-          toggleAnimation();
-          // instead of placing an object we will just toggle animation state
-          document.getElementById("overlay").removeEventListener('click', placeObject);
-          document.getElementById("overlay").addEventListener('click', toggleAnimation);
-        }
-      }
-
-      function toggleAnimation() {
-        if (action.isRunning()) {
-            action.stop();
-            action.reset();
-          } else {
-            action.play();
-          }
-      }
-
-      // Utility function to update animated objects
-      function updateAnimation() {
-        let dt = (Date.now() - lastFrame) / 1000;
-        lastFrame = Date.now();
-        if (mixer) {
-          mixer.update(dt);
-        }  
-      }
-
-      function onXRFrame(t, frame) {
-        let session = frame.session;
-        session.requestAnimationFrame(onXRFrame);
-
-        if (xrHitTestSource) {
-          // obtain hit test results by casting a ray from the center of device screen
-          // into AR view. Results indicate that ray intersected with one or more detected surfaces
-          const hitTestResults = frame.getHitTestResults(xrHitTestSource);
-          if (hitTestResults.length) {
-            // obtain a local pose at the intersection point
-            const pose = hitTestResults[0].getPose(xrRefSpace);
-            // place a reticle at the intersection point
-            reticle.matrix.fromArray(pose.transform.matrix);
-            reticle.visible = true;
-          }
-        } else {  // do not show a reticle if no surfaces are intersected
-          reticle.visible = false;
-        }
-
-        // update object animation
-        updateAnimation();
-        // bind our gl context that was created with WebXR to threejs renderer
-        gl.bindFramebuffer(gl.FRAMEBUFFER, session.renderState.baseLayer.framebuffer);
-        // render the scene
-        renderer.render(scene, camera);
-      }
-
-      checkXR();
+	    renderer.render(scene, camera);
+      });
+    });
+  }
+  initialize();
+});
