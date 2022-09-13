@@ -1,8 +1,8 @@
    // const avatar = await loadGLTF('../Project1/Avatar.glb');
    // avatar.scene.scale.set(1, 0.85, 1);
    // avatar.scene.position.set(-0.8, -0.75, -0.3);
-import * as THREE from '../../libs/three.js-r132/build/three.module.js';
-import {ARButton} from '../../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
+import * as THREE from '../libs/three.js-r132/build/three.module.js';
+import {ARButton} from '../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const initialize = async() => {
