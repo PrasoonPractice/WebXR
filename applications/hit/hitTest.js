@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const itemName = ['avatar'];
     const itemHeight = [0.5];
       const model = await loadGLTF('../Project1/Avatar.glb');
-      normalizeModel(model.scene, itemHeights[i]);
+      normalizeModel(model.scene, itemHeight);
       const item = new THREE.Group();
       item.add(model.scene);
       item.visible = false;
