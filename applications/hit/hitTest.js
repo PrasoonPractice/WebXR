@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const avatar = await loadGLTF('../Project1/Avatar.glb');
     avatar.scene.scale.set(1, 0.85, 1);
-    avatar.scene.position.set(-0.8, -0.75, -0.3);
+    //avatar.scene.position.set(-0.8, -0.75, -0.3);
 
     const item = new THREE.Group();
     item.add(avatar.scene);
@@ -55,22 +55,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const session = renderer.xr.getSession();
       const viewerReferenceSpace = await session.requestReferenceSpace("viewer");
       const hitTestSource = await session.requestHitTestSource({space: viewerReferenceSpace});
-      let counter = false;
+      const counter = false;
 
       renderer.setAnimationLoop((timestamp, frame) => {
 	    if (!frame) return;
 	    const hitTestResults = frame.getHitTestResults(hitTestSource);
 
-        if (hitTestResults.length) {
-	        const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
-            const hit = hitTestResults[0];
-
-            if (avatar) {
-	            if (!counter) {
+            if (hitTestResults.length) {
+	  	const hit = hitTestResults[0];
+	  	const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
+	  	const hitPose = hit.getPose(referenceSpace);
+		
+		if (!counter) {
+	  		reticle.visible = true;
+	  		reticle.matrix.fromArray(hitPose.transform.matrix);
+		}
+  	     } 
+             if (reticle.visible && avatar){
 	                item.visible = true;
 	                item.position.setFromMatrixPosition(new THREE.Matrix4().fromArray(hit.getPose(referenceSpace).transform.matrix));
-                    counter = true;
-                }
+                    	counter = true;
             }
         }
 	    renderer.render(scene, camera);
