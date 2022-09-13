@@ -26,20 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
 
-    const avatar = await loadGLTF('../Project1/Avatar.glb');
-    avatar.scene.scale.set(1, 0.85, 1);
-    avatar.scene.position.set(-0.8, -0.75, -0.3);
-   
-    const canvas = new THREE.Group();
-    canvas.add(avatar.scene);
-    canvas.position.setFromMatrixPosition(reticle.matrix);
-    canvas.visible = false;
+
 	  
     var counter = false;
 	  
     const controller = renderer.xr.getController(0);
     scene.add(controller);
     controller.addEventListener('select', () => {
+    const avatar = await loadGLTF('../Project1/Avatar.glb');
+    //avatar.scene.scale.set(1, 0.85, 1);
+    //avatar.scene.position.set(-0.8, -0.75, -0.3);
+   
+    const canvas = new THREE.Group();
+    canvas.add(avatar.scene);
+    canvas.position.setFromMatrixPosition(reticle.matrix);
+    canvas.visible = false;	    
     	if (!counter && reticle.visible) {
 	    canvas.visible = true;
 	    counter = true;
