@@ -208,14 +208,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	items.add(label);
     	items.position.setFromMatrixPosition(reticle.matrix);
     	items.visible = false;
-        var counter = false;
     });
 
     renderer.xr.addEventListener("sessionstart", async (e) => {
       const session = renderer.xr.getSession();
       const viewerReferenceSpace = await session.requestReferenceSpace("viewer");
       const hitTestSource = await session.requestHitTestSource({space: viewerReferenceSpace});
-
+         
+      var counter = false;
+	    
       renderer.setAnimationLoop((timestamp, frame) => {
 	if (!frame) return;
 
