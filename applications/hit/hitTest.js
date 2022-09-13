@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.position.setFromMatrixPosition(reticle.matrix);
     canvas.visible = false;
 	  
-    const counter = false;
+    var counter = false;
 	  
     const controller = renderer.xr.getController(0);
     scene.add(controller);
