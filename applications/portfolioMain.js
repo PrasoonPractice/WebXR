@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             container: document.body,
             imageTargetSrc: './assets/targets/card.mind',
         });
-        const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
+        const { renderer, scene, camera } = mindarThree;
 
         const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
         scene.add(light);
@@ -59,9 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        playIcon.position.set(-0.80, 0.35, 0.5);
+        playIcon.position.set(-0.80, 0.38, 0.05);
         webIcon.position.set(-0.14, -0.60, 0);
-        locationIcon.position.set(0.16, -0.60, 0);
+        locationIcon.position.set(0.16, -0.60, -0.02);
         callIcon.position.set(0.46, -0.60, 0);
         messageIcon.position.set(0.76, -0.60, 0);
         emailIcon.position.set(1.06, -0.60, 0);
@@ -185,13 +185,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (o === emailIcon) {
                         window.location.href = "mailto:contact@falconicx.com?subject=Hello";
                     }
-                    if (functionisPlaying(audio)) {
+                    while (functionisPlaying(audio)) {
                         playIcon.visible = false;
-                    } else {
-                        playIcon.visible = true;
                     }
+                    playIcon.visible = true;                   
                     anchor.onTargetLost = () => {
                         audio.pause();
+                        playIcon.visible = true;
                     }  
                 }
             }
