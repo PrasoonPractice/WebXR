@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = new THREE.Mesh(planeGeometry, cardMaterial);
         //const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         //const card = new THREE.Sprite(cardMaterial);
-        card.position.set(0.5, 0, 0);
+        card.position.set(0.5, 0.05, 0);
         
         //const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
@@ -58,12 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        playIcon.position.set(-0.8, -0.7, 0.02);
+        playIcon.position.set(-0.80, -0.7, 0.02);
         webIcon.position.set(-0.14, -0.60, 0);
-        locationIcon.position.set(0.14, -0.60, 0);
-        callIcon.position.set(0.42, -0.60, 0);
-        messageIcon.position.set(0.70, -0.60, 0);
-        emailIcon.position.set(0.98, -0.60, 0);
+        locationIcon.position.set(0.16, -0.60, 0);
+        callIcon.position.set(0.46, -0.60, 0);
+        messageIcon.position.set(0.76, -0.60, 0);
+        emailIcon.position.set(1.06, -0.60, 0);
 
         //if (id === anything)
             const avatar = await loadGLTF('./Project1/Avatar.glb');
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //    const avatar = await loadGLTF('./Project1/Avatar1.glb');
         
         avatar.scene.scale.set(1, 0.85, 1);
-        avatar.scene.position.set(-0.8, -0.7, -0.3);
+        avatar.scene.position.set(-0.8, -0.75, -0.3);
 
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(avatar.scene);
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const label = new THREE.Mesh(planeGeometry, labelMaterial);
-        label.position.set(0.5, -0.06, 0.003);
+        label.position.set(0.5, -0.26, 0.003);
         anchor.group.add(label);
 
         const audioClip = await loadAudio('./Project1/intro.mp3');
