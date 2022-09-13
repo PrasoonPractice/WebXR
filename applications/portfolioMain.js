@@ -1,4 +1,3 @@
-//import { CSS3DObject } from './libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js';
 //import {mockWithImage} from './libs/camera-mock.js';
 import { loadGLTF, loadAudio, loadTextures } from './libs/loader.js';
 const THREE = window.MINDAR.IMAGE.THREE;
@@ -90,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.font = font;
             ctx.textBaseline = 'top';
 
-            ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+            ctx.fillStyle = 'rgba(0,0,0,0)';
             ctx.fillRect(0, 0, width, height);
             ctx.fillStyle = 'black';
             ctx.fillText(name, borderSize, borderSize);
@@ -98,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return ctx.canvas;
         }       
 
-        const canvas =  makeLabelCanvas(150, document.querySelector("#ar-div"));
+        const canvas =  makeLabelCanvas(75, document.querySelector("#ar-div"));
         const texture = new THREE.CanvasTexture(canvas);
         // because our canvas is likely not a power of 2
         // in both dimensions set the filtering appropriately.
@@ -113,16 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const label = new THREE.Mesh(labelGeometry, labelMaterial);
-        label.position.set(0.5, 0.06, 0.003);
+        label.position.set(0.5, -0.06, 0.003);
         anchor.group.add(label);
-
-        //const obj = new CSS3DObject(document.querySelector("#ar-div"));
-        //obj.scale.set(1.662, 0.5);
-        //obj.position.set(0.2, -0.005, 0);
-        //obj.visible = true;
-
-        //const cssAnchor = mindarThree.addCSSAnchor(0);
-        //cssAnchor.group.add(obj);
 
         const audioClip = await loadAudio('./Project1/intro.mp3');
 
@@ -139,12 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
         //anchor.onTargetFound = () => {
         //    audio.play();
         //}
-        anchor.onTargetLost = () => {
-            audio.pause();
-        }  
-
+        
          //handle buttons
-        avatar.scene.userData.clickable = true;
+        avatar.userData.clickable = true;
         webIcon.userData.clickable = true;
         locationIcon.userData.clickable = true;
         callIcon.userData.clickable = true;
@@ -179,6 +167,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (o === emailIcon) {
                         window.location.href = "mailto:contact@falconicx.com?subject=Hello";
                     }
+                    anchor.onTargetLost = () => {
+                        audio.pause();
+                    }  
                 }
             }
         });
@@ -187,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
         await mindarThree.start();
         renderer.setAnimationLoop(() => {
             renderer.render(scene, camera);
-            //cssRenderer.render(cssScene, camera);
         });
     }
 
