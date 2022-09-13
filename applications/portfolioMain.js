@@ -96,6 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
             return ctx.canvas;
         }
 
+        makeLabelCanvas(document.querySelector("#ar-div"));
+
         const canvas = makeLabelCanvas(size, name);
         const texture = new THREE.CanvasTexture(canvas);
         // because our canvas is likely not a power of 2
@@ -109,8 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
             side: THREE.DoubleSide,
             transparent: true,
         });
-
-        makeLabelCanvas(document.querySelector("#ar-div"));
 
         const label = new THREE.Mesh(labelGeometry, labelMaterial);
         label.position.set(0.5, 0.06, 0.003);
