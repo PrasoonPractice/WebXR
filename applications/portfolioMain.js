@@ -76,11 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(avatar.scene);
         anchor.group.add(card);
-        anchor.group.add(emailIcon);
+        anchor.group.add(playIcon);
         anchor.group.add(webIcon);
-        anchor.group.add(callIcon);
         anchor.group.add(locationIcon);
+        anchor.group.add(callIcon);
         anchor.group.add(messageIcon);
+        anchor.group.add(emailIcon);
         
         //if (id === anything)
             const name = "Prasoon Srivastava";
