@@ -1,5 +1,5 @@
 import * as THREE from '../libs/three.js-r132/build/three.module.js';
-import { loadGLTF, loadAudio, loadTextures } from '../libs/loader.js';
+import { loadGLTF } from '../libs/loader.js';
 import { ARButton } from '../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -26,15 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
 
+    const avatar = await loadGLTF('../Project1/Avatar.glb');
+    avatar.scene.scale.set(1, 0.85, 1);	 
+    avatar.scene.visible = false;
+
     const controller = renderer.xr.getController(0);
     scene.add(controller);
     controller.addEventListener('select', () => {
-      const geometry = new THREE.BoxGeometry(0.06, 0.06, 0.06); 
-      const material = new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random()});
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.setFromMatrixPosition(reticle.matrix);
-      mesh.scale.y = Math.random() * 2 + 1;
-      scene.add(mesh);
+    //no click events at moment
+	    avatar.scene.position.setFromMatrixPosition(reticle.matrix);
+	    console.log("select");
     });
 
     renderer.xr.addEventListener("sessionstart", async (e) => {
@@ -57,6 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	} else {
 	  reticle.visible = false;
 	}
+	if (reticle.visible && avatar) {
+            reticle.visible = false;
+            // stop hit testing
+            hitTestSource.cancel();
+            hitTestSource = null;
+            // we'll be placing our object right where the reticle was
+            const pos = reticle.getWorldPosition();
+            scene.remove(reticle);
+            avatar.position.set(pos.x, pos.y, pos.z);
+            avatar.scene.visible = true;
+        }
 
 	renderer.render(scene, camera);
       });
