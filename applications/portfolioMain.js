@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             transparent: true,
         });
 
-        makeLabelCanvas(150, document.querySelector("#ar-div"));
+        makeLabelCanvas(document.querySelector("#ar-div"));
 
         const label = new THREE.Mesh(labelGeometry, labelMaterial);
         label.position.set(0.5, 0.06, 0.003);
