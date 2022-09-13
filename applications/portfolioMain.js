@@ -136,9 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.setRefDistance(200);
         audio.setLoop(false);
 
-        anchor.onTargetFound = () => {
-            audio.play();
-        }
+        //anchor.onTargetFound = () => {
+        //    audio.play();
+        //}
         anchor.onTargetLost = () => {
             audio.pause();
         }  
