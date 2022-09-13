@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
         //const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         //const card = new THREE.Sprite(cardMaterial);
         card.position.set(0.5, 0.05, 0);
+        
+        const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
         const iconGeometry = new THREE.CircleGeometry(0.12, 32);
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
@@ -88,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ctx.font = font;
             ctx.textBaseline = 'top';
 
-            ctx.fillStyle = 'blue';
+            ctx.fillStyle = none;
             ctx.fillRect(0, 0, width, height);
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = 'black';
             ctx.fillText(name, borderSize, borderSize);
 
             return ctx.canvas;
