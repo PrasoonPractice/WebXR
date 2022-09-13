@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (reticle.visible && avatar) {
                     reticle.visible = false;
                     // stop hit testing
-                    xrHitTestSource.cancel();
-                    xrHitTestSource = null;
+                    hitTestSource.cancel();
+                    hitTestSource = null;
                     // we'll be placing our object right where the reticle was
                     const pos = reticle.getWorldPosition();
                     scene.remove(reticle);
