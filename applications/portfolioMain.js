@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return ctx.canvas;
         }
 
-        makeLabelCanvas(document.querySelector("#ar-div"));
+        makeLabelCanvas(150, document.querySelector("#ar-div"));
 
         const canvas = makeLabelCanvas(size, name);
         const texture = new THREE.CanvasTexture(canvas);
