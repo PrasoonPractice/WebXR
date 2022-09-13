@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await mindarThree.start();
         renderer.setAnimationLoop(() => {
             renderer.render(scene, camera);
-            cssRenderer.render(cssScene, camera);
+            //cssRenderer.render(cssScene, camera);
         });
     }
 
