@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         //const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
-        const iconGeometry = new THREE.CircleGeometry(0.12, 32);
+        const iconGeometry = new THREE.CircleGeometry(0.15, 32);
         const playMaterial = new THREE.MeshBasicMaterial({ map: playTexture });
         const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
@@ -59,13 +59,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
         playIcon.position.set(-0.8, -0.7, 0.02);
-        webIcon.position.set(-0.14, -0.65, 0);
-        locationIcon.position.set(0.14, -0.65, 0);
-        callIcon.position.set(0.42, -0.65, 0);
-        messageIcon.position.set(0.70, -0.65, 0);
-        emailIcon.position.set(0.98, -0.65, 0);
+        webIcon.position.set(-0.14, -0.60, 0);
+        locationIcon.position.set(0.14, -0.60, 0);
+        callIcon.position.set(0.42, -0.60, 0);
+        messageIcon.position.set(0.70, -0.60, 0);
+        emailIcon.position.set(0.98, -0.60, 0);
 
-        const avatar = await loadGLTF('./Project1/Avatar.glb');
+        //if (id === anything)
+            const avatar = await loadGLTF('./Project1/Avatar.glb');
+        //else
+        //    const avatar = await loadGLTF('./Project1/Avatar1.glb');
+        
         avatar.scene.scale.set(1, 0.85, 1);
         avatar.scene.position.set(-0.8, -0.7, -0.3);
 
@@ -77,6 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(callIcon);
         anchor.group.add(locationIcon);
         anchor.group.add(messageIcon);
+        
+        //if (id === anything)
+            const name = "Prasoon Srivastava";
+        //else
+        //    const name = "Manish Chitkara";
 
         function makeLabelCanvas(size, name) {
             const borderSize = 2;
@@ -129,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(audio);
 
         audio.setBuffer(audioClip);
-        audio.setRefDistance(200);
+        audio.setRefDistance(20);
         audio.setLoop(false);
 
         //anchor.onTargetFound = () => {
