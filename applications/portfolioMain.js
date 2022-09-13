@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        playIcon.position.set(-0.80, -0.7, 0.02);
+        playIcon.position.set(-0.80, -0.7, 0.5);
         webIcon.position.set(-0.14, -0.60, 0);
         locationIcon.position.set(0.16, -0.60, 0);
         callIcon.position.set(0.46, -0.60, 0);
@@ -105,13 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             ctx.fillStyle = 'rgba(0,0,0,0)';
             ctx.fillRect(0, 0, width, height);
-            ctx.fillStyle = 'black';
+            ctx.fillStyle = '#f58814';
+            //ctx.fillStyle = 'rgba(245,136,20,0.99)';
             ctx.fillText(name, borderSize, borderSize);
 
             return ctx.canvas;
         }       
 
-        const canvas =  makeLabelCanvas(75, name);
+        const canvas =  makeLabelCanvas(60, name);
         const texture = new THREE.CanvasTexture(canvas);
         // because our canvas is likely not a power of 2
         // in both dimensions set the filtering appropriately.
