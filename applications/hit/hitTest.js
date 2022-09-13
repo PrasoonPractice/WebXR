@@ -1,22 +1,13 @@
-import {loadGLTF} from "../libs/loader.js";
-import * as THREE from '../libs/three.js-r132/build/three.module.js';
-import {ARButton} from '../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
-
-// make clone object not sharing materials
-//const deepClone = (obj) => {
-//  const newObj = obj.clone();
-//  newObj.traverse((o) => {
-//    if (o.isMesh) {
-//      o.material = o.material.clone();
-//    }
-//  });
-//  return newObj;
-//}
+   // const avatar = await loadGLTF('../Project1/Avatar.glb');
+   // avatar.scene.scale.set(1, 0.85, 1);
+   // avatar.scene.position.set(-0.8, -0.75, -0.3);
+import * as THREE from '../../libs/three.js-r132/build/three.module.js';
+import {ARButton} from '../../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const initialize = async() => {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.01, 20);
+    const camera = new THREE.PerspectiveCamera();
 
     const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
     scene.add(light);
@@ -27,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     reticle.matrixAutoUpdate = false;
     reticle.visible = false;
     scene.add(reticle);
-    
+
     const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -37,48 +28,47 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
 
-    const avatar = await loadGLTF('../Project1/Avatar.glb');
-    avatar.scene.scale.set(1, 0.85, 1);
-    //avatar.scene.position.set(-0.8, -0.75, -0.3);
-
-    const item = new THREE.Group();
-    item.add(avatar.scene);
-    item.visible = false;
-
     const controller = renderer.xr.getController(0);
     scene.add(controller);
-    controller.addEventListener('select', (e) => {
-    console.log("select");
+    controller.addEventListener('select', () => {
+      const geometry = new THREE.BoxGeometry(0.06, 0.06, 0.06); 
+      const material = new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random()});
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.setFromMatrixPosition(reticle.matrix);
+      mesh.scale.y = Math.random() * 2 + 1;
+      scene.add(mesh);
     });
-    
+
     renderer.xr.addEventListener("sessionstart", async (e) => {
       const session = renderer.xr.getSession();
       const viewerReferenceSpace = await session.requestReferenceSpace("viewer");
       const hitTestSource = await session.requestHitTestSource({space: viewerReferenceSpace});
-      const counter = false;
 
       renderer.setAnimationLoop((timestamp, frame) => {
-	    if (!frame) return;
-	    const hitTestResults = frame.getHitTestResults(hitTestSource);
+	if (!frame) return;
 
-            if (hitTestResults.length) {
-	  	const hit = hitTestResults[0];
-	  	const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
-	  	const hitPose = hit.getPose(referenceSpace);
-		
-		if (!counter) {
-	  		reticle.visible = true;
-	  		reticle.matrix.fromArray(hitPose.transform.matrix);
-		}
-  	     } 
-             if (reticle.visible && avatar){
-	                item.visible = true;
-	                item.position.setFromMatrixPosition(new THREE.Matrix4().fromArray(hit.getPose(referenceSpace).transform.matrix));
-                    	counter = true;
-            }
-	    renderer.render(scene, camera);
+	const hitTestResults = frame.getHitTestResults(hitTestSource);
+
+	if (hitTestResults.length) {
+	  const hit = hitTestResults[0];
+	  const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
+	  const hitPose = hit.getPose(referenceSpace);
+
+	  reticle.visible = true;
+	  reticle.matrix.fromArray(hitPose.transform.matrix);
+	} else {
+	  reticle.visible = false;
+	}
+
+	renderer.render(scene, camera);
       });
     });
+
+    renderer.xr.addEventListener("sessionend", () => {
+      console.log("session end");
+    });
+
   }
+
   initialize();
 });
