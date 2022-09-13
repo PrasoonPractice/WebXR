@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(arButton);
 
     const itemName = ['avatar'];
-    const itemHeight = [0.5, 0.7, 0.05];
+    const itemHeight = [0.5];
       const model = await loadGLTF('../Project1/Avatar.glb');
       normalizeModel(model.scene, itemHeights[i]);
       const item = new THREE.Group();
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       item.visible = false;
       setOpacity(item, 1);
       scene.add(item);
-    }
+
 	  
     var counter = false;
 	  
