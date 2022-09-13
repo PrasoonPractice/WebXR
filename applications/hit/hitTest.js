@@ -25,7 +25,17 @@ document.addEventListener('DOMContentLoaded', () => {
     		const controller = renderer.xr.getController(0);
     		scene.add(controller);
 		
-		const avatar = await loadGLTF('./Project1/Avatar.glb');
+	        //var loader = new GLTFLoader();
+        	//loader.load(
+          	//'../Project1/Avatar.glb',
+          	//(avatar) => {
+           	//model = avatar.scene;
+           	//model.scale.set(0.1, 0.1, 0.1);
+            	//model.castShadow = true;
+            	//model.receiveShadow = true;
+          	//}
+		
+		const avatar = await loadGLTF('../Project1/Avatar.glb');
 		
     		controller.addEventListener('select', () => {
 	    		avatar.scene.quaternion.setFromRotationMatrix(controller.matrixWorld);
