@@ -156,13 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
         messageIcon.userData.clickable = true;
         emailIcon.userData.clickable = true;
 
-                if (audio.paused) {
-            playIcon.visible = true;
-        }   
-        anchor.onTargetLost = () => {
-            audio.pause();
-            playIcon.visible = true;
-        }
         document.body.addEventListener('click', (e) => {
             const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
             const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -200,6 +193,13 @@ document.addEventListener('DOMContentLoaded', () => {
         await mindarThree.start();
         renderer.setAnimationLoop(() => {
             renderer.render(scene, camera);
+            if (audio.paused) {
+                playIcon.visible = true;
+            }   
+            anchor.onTargetLost = () => {
+                audio.pause();
+                playIcon.visible = true;
+            }
         });
     }
 
