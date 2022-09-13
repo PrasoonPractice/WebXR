@@ -1,5 +1,5 @@
 import * as THREE from '../libs/three.js-r132/build/three.module.js';
-import {loadGLTF} from "../libs/loader.js";
+import {loadGLTF} from '../libs/loader.js';
 import {ARButton} from '../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -32,8 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	  
     const controller = renderer.xr.getController(0);
     scene.add(controller);
-    controller.addEventListener('select', () => {
     const avatar = await loadGLTF('../Project1/Avatar.glb');
+    controller.addEventListener('select', () => {
+    
     //avatar.scene.scale.set(1, 0.85, 1);
     //avatar.scene.position.set(-0.8, -0.75, -0.3);
    
