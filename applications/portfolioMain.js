@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         window.location.href = "mailto:contact@falconicx.com?subject=Hello";
                     }
                     if (functionisPlaying(audio)) {
-                       playIcon.visible = false;
-                    }) else {
+                        playIcon.visible = false;
+                    } else {
                         playIcon.visible = true;
                     }
                     anchor.onTargetLost = () => {
