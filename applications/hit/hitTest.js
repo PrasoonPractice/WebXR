@@ -1,7 +1,5 @@
-   // const avatar = await loadGLTF('../Project1/Avatar.glb');
-   // avatar.scene.scale.set(1, 0.85, 1);
-   // avatar.scene.position.set(-0.8, -0.75, -0.3);
 import * as THREE from '../libs/three.js-r132/build/three.module.js';
+import {loadGLTF} from "../libs/loader.js";
 import {ARButton} from '../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,15 +26,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
 
+    const avatar = await loadGLTF('../Project1/Avatar.glb');
+    avatar.scene.scale.set(1, 0.85, 1);
+    avatar.scene.position.set(-0.8, -0.75, -0.3);
+   
+    const canvas = new THREE.Group();
+    canvas.add(avatar.scene);
+    canvas.position.setFromMatrixPosition(reticle.matrix);
+    canvas.visible = false;
+	  
+    const counter = false;
+	  
     const controller = renderer.xr.getController(0);
     scene.add(controller);
     controller.addEventListener('select', () => {
-      const geometry = new THREE.BoxGeometry(0.06, 0.06, 0.06); 
-      const material = new THREE.MeshBasicMaterial({ color: 0xffffff * Math.random()});
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.position.setFromMatrixPosition(reticle.matrix);
-      mesh.scale.y = Math.random() * 2 + 1;
-      scene.add(mesh);
+    	if (!counter && reticle.visible) {
+	    canvas.visible = true;
+	    counter = true;
+	}
     });
 
     renderer.xr.addEventListener("sessionstart", async (e) => {
@@ -50,14 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	const hitTestResults = frame.getHitTestResults(hitTestSource);
 
 	if (hitTestResults.length) {
-	  const hit = hitTestResults[0];
-	  const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
-	  const hitPose = hit.getPose(referenceSpace);
-
-	  reticle.visible = true;
-	  reticle.matrix.fromArray(hitPose.transform.matrix);
-	} else {
-	  reticle.visible = false;
+		const hit = hitTestResults[0];
+		const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
+		const hitPose = hit.getPose(referenceSpace);
+		if (!counter) {
+			reticle.visible = true;
+			reticle.matrix.fromArray(hitPose.transform.matrix);
+		}
+	}else {
+		reticle.visible = false;
 	}
 
 	renderer.render(scene, camera);
