@@ -2,6 +2,41 @@ import * as THREE from '../libs/three.js-r132/build/three.module.js';
 import {loadGLTF} from '../libs/loader.js';
 import {ARButton} from '../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
+
+const normalizeModel = (obj, height) => {
+  // scale it according to height
+  const bbox = new THREE.Box3().setFromObject(obj);
+  const size = bbox.getSize(new THREE.Vector3());
+  obj.scale.multiplyScalar(height / size.y);
+
+  // reposition to center
+  const bbox2 = new THREE.Box3().setFromObject(obj);
+  const center = bbox2.getCenter(new THREE.Vector3());
+  obj.position.set(-center.x, -center.y, -center.z);
+}
+
+// recursively set opacity
+const setOpacity = (obj, opacity) => {
+  obj.children.forEach((child) => {
+    setOpacity(child, opacity);
+  });
+  if (obj.material) {
+    obj.material.format = THREE.RGBAFormat; // required for opacity
+    obj.material.opacity = opacity;
+  }
+}
+
+// make clone object not sharing materials
+const deepClone = (obj) => {
+  const newObj = obj.clone();
+  newObj.traverse((o) => {
+    if (o.isMesh) {
+      o.material = o.material.clone();
+    }
+  });
+  return newObj;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const initialize = async() => {
     const scene = new THREE.Scene();
@@ -26,16 +61,24 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(renderer.domElement);
     document.body.appendChild(arButton);
 
-
+    const itemName = ['avatar'];
+    const itemHeight = [0.5, 0.7, 0.05];
+      const model = await loadGLTF('../Project1/Avatar.glb');
+      normalizeModel(model.scene, itemHeights[i]);
+      const item = new THREE.Group();
+      item.add(model.scene);
+      item.visible = false;
+      setOpacity(item, 1);
+      scene.add(item);
+    }
 	  
     var counter = false;
 	  
     const controller = renderer.xr.getController(0);
     scene.add(controller);
-    const avatar = await loadGLTF('../Project1/Avatar.glb');
     controller.addEventListener('select', () => {
     
-    avatar.scene.scale.set(1, 0.85, 1);
+    //avatar.scene.scale.set(1, 0.85, 1);
     //avatar.scene.position.set(-0.8, -0.75, -0.3);
    
     const canvas = new THREE.Group();
