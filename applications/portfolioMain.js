@@ -1,4 +1,4 @@
-import { CSS3DObject } from './libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js';
+//import { CSS3DObject } from './libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js';
 //import {mockWithImage} from './libs/camera-mock.js';
 import { loadGLTF, loadAudio, loadTextures } from './libs/loader.js';
 const THREE = window.MINDAR.IMAGE.THREE;
@@ -6,7 +6,7 @@ const THREE = window.MINDAR.IMAGE.THREE;
 document.addEventListener('DOMContentLoaded', () => {
     const start = async () => {
 
-       //mockWithImage('./Project1/mock.jpg');
+        //mockWithImage('./Project1/mock.jpg');
         // initialize MindAR 
         const mindarThree = new window.MINDAR.IMAGE.MindARThree({
             container: document.body,
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
         const callMaterial = new THREE.MeshBasicMaterial({ map: callTexture });
         const messageMaterial = new THREE.MeshBasicMaterial({ map: messageTexture });
-        const emailMaterial = new THREE.MeshBasicMaterial({ map: emailTexture});
+        const emailMaterial = new THREE.MeshBasicMaterial({ map: emailTexture });
 
         const webIcon = new THREE.Mesh(iconGeometry, webMaterial);
         const locationIcon = new THREE.Mesh(iconGeometry, locationMaterial);
@@ -59,12 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
         messageIcon.position.set(0.42, -0.65, 0);
         emailIcon.position.set(0.70, -0.65, 0);
 
-        //const avatar = await loadGLTF('./Project1/Avatar.glb');
-        //avatar.scene.scale.set(1, 0.85, 1);
-        //avatar.scene.position.set(-0.75, -0.6, -0.3);
+        const avatar = await loadGLTF('./Project1/Avatar.glb');
+        avatar.scene.scale.set(1, 0.85, 1);
+        avatar.scene.position.set(-0.75, -0.6, -0.3);
 
         const anchor = mindarThree.addAnchor(0);
-        //anchor.group.add(avatar.scene);
+        anchor.group.add(avatar.scene);
         anchor.group.add(card);
         anchor.group.add(emailIcon);
         anchor.group.add(webIcon);
@@ -72,13 +72,57 @@ document.addEventListener('DOMContentLoaded', () => {
         anchor.group.add(locationIcon);
         anchor.group.add(messageIcon);
 
-        const obj = new CSS3DObject(document.querySelector("#ar-div"));
-        obj.scale.set(1.662, 0.5);
-        obj.position.set(0.2, -0.005, 0);
-        obj.visible = true;
+        function makeLabelCanvas(size, name) {
+            const borderSize = 2;
+            const ctx = document.createElement('canvas').getContext('2d');
+            const font = `${size}px bold sans-serif`;
+            ctx.font = font;
+            // measure how long the name will be
+            const doubleBorderSize = borderSize * 2;
+            const width = ctx.measureText(name).width + doubleBorderSize;
+            const height = size + doubleBorderSize;
+            ctx.canvas.width = width;
+            ctx.canvas.height = height;
 
-        const cssAnchor = mindarThree.addCSSAnchor(0);
-        cssAnchor.group.add(obj);
+            // need to set font again after resizing canvas
+            ctx.font = font;
+            ctx.textBaseline = 'top';
+
+            ctx.fillStyle = 'blue';
+            ctx.fillRect(0, 0, width, height);
+            ctx.fillStyle = 'white';
+            ctx.fillText(name, borderSize, borderSize);
+
+            return ctx.canvas;
+        }
+
+        const canvas = makeLabelCanvas(size, name);
+        const texture = new THREE.CanvasTexture(canvas);
+        // because our canvas is likely not a power of 2
+        // in both dimensions set the filtering appropriately.
+        texture.minFilter = THREE.LinearFilter;
+        texture.wrapS = THREE.ClampToEdgeWrapping;
+        texture.wrapT = THREE.ClampToEdgeWrapping;
+
+        const labelMaterial = new THREE.MeshBasicMaterial({
+            map: texture,
+            side: THREE.DoubleSide,
+            transparent: true,
+        });
+
+        makeLabelCanvas(150, document.querySelector("#ar-div"));
+
+        const label = new THREE.Mesh(labelGeometry, labelMaterial);
+        label.position.set(0.5, 0.06, 0.003);
+        anchor.group.add(label);
+
+        //const obj = new CSS3DObject(document.querySelector("#ar-div"));
+        //obj.scale.set(1.662, 0.5);
+        //obj.position.set(0.2, -0.005, 0);
+        //obj.visible = true;
+
+        //const cssAnchor = mindarThree.addCSSAnchor(0);
+        //cssAnchor.group.add(obj);
 
         const audioClip = await loadAudio('./Project1/intro.mp3');
 
@@ -92,15 +136,15 @@ document.addEventListener('DOMContentLoaded', () => {
         audio.setRefDistance(200);
         audio.setLoop(false);
 
-        //anchor.onTargetFound = () => {
-        //    audio.play();
-        //}
-        //anchor.onTargetLost = () => {
-        //    audio.pause();
-        //}  
+        anchor.onTargetFound = () => {
+            audio.play();
+        }
+        anchor.onTargetLost = () => {
+            audio.pause();
+        }  
 
-        // handle buttons
-        //avatar.scene.userData.clickable = true;
+         //handle buttons
+        avatar.scene.userData.clickable = true;
         webIcon.userData.clickable = true;
         locationIcon.userData.clickable = true;
         callIcon.userData.clickable = true;
@@ -121,11 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     o = o.parent;
                 }
                 if (o.userData.clickable) {
-                    //if (o === avatar) {
-                    //    console.log("intro");
-                    //    audio.play();                         
-                    //} else 
-                    if (o === webIcon) {
+                    if (o === avatar) {
+                        console.log("intro");
+                        audio.play();                         
+                    } else if (o === webIcon) {
                         window.location.href = " https://falconicx.com/";
                     } else if (o === locationIcon) {
                         console.log("loc");
@@ -142,11 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const clock = new THREE.Clock();
         await mindarThree.start();
-        renderer.setAnimationLoop(() => {   
+        renderer.setAnimationLoop(() => {
             renderer.render(scene, camera);
             cssRenderer.render(cssScene, camera);
         });
     }
-    
+
     start();
 });
