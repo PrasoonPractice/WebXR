@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
         scene.add(reticle);
         
         const avatar = await loadGLTF('../Project1/Avatar.glb');
+        avatar.scene.scale.set(1, 0.85, 1);
+        avatar.scene.visible = false;
 
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setPixelRatio(window.devicePixelRatio);
@@ -29,11 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const controller = renderer.xr.getController(0);
         scene.add(controller);
-        controller.addEventListener('select', () => {
-            avatar.scene.scale.set(1, 0.85, 1);
-            avatar.scene.visible = false;
+        //controller.addEventListener('select', () => {
+        //    avatar.scene.visible = true;
 
-        });
+        //});
 
         renderer.xr.addEventListener("sessionstart", async (e) => {
             const session = renderer.xr.getSession();
