@@ -56,6 +56,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		//create an event listner on how to respond if a click or tap event occures
 		controller.addEventListener('select', () => {
 			console.log("select");
+			if (reticle.visible && avatar) {
+				avatar.scale.set(1, 1, 1);
+				avatar.visible = true;
+				console.log(avatar);
+				console.log("Avatar rendered at reticle");
+				reticle.visible = false;
+				counter = true;
+				console.log("counter is now true");
+			}
 			//always use the reticle.matrix to set/compare position
 			//mesh.position.setFromMatrixPosition(reticle.matrix);
       			//mesh.scale.y = Math.random() * 2 + 1;
@@ -83,14 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						reticle.visible = true;
 						reticle.matrix.fromArray(hitPose.transform.matrix);
 					}
-					if (reticle.visible && avatar) {
-						avatar.visible = true;
-						console.log(avatar);
-						console.log("Avatar rendered at reticle");
-						reticle.visible = false;
-						counter = true;
-						console.log("counter is now true");
-					}
+					
 				} else {
 					reticle.visible = false;
 				}
