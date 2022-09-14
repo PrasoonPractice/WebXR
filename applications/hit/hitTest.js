@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						avatar.position.setFromMatrixPosition(reticle.matrix);
 						scene.add(avatar);
 						console.log("Avatar rendered at reticle");
+						reticle.visible = false;
 						counter = true;
 						console.log("counter is now true");
 					}
