@@ -1,6 +1,7 @@
 //import libreries
 import * as THREE from '../libs/three.js-r132/build/three.module.js';
-import { loadGLTF, loadAudio, loadTextures } from '../libs/loader.js';
+import {GLTFLoader} from '../libs/three.js-r132/examples/jsm/loaders/GLTFLoader.js';
+//import { loadAudio, loadTextures } from '../libs/loader.js';
 import {ARButton} from '../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     		scene.add(reticle);
 		console.log("reticle added");
 		//lod the 3d model using a loder object
-		const loader = new THREE.GLTFLoder();
+		const loader = new GLTFLoder();
 		console.log("loader");
 		loader.load(
 			'../Project1/Avatar.glb',
