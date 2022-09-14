@@ -235,12 +235,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             window.location.href = "mailto:contact@falconicx.com?subject=Hello";
                     }
                 }
-            }
-      });
+            });
+        }
 
       	renderer.render(scene, camera);
       });
-    });
 
     renderer.xr.addEventListener("sessionend", () => {
       console.log("session end");
