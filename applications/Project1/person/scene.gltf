@@ -1,0 +1,352 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 9334,
+      "max": [
+        93.44781494140625,
+        12.586636543273926,
+        178.62948608398438
+      ],
+      "min": [
+        -93.39859008789063,
+        -15.98149299621582,
+        14.304245948791504
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 112008,
+      "componentType": 5126,
+      "count": 9334,
+      "max": [
+        0.9999353289604187,
+        0.999933123588562,
+        0.9999998807907104
+      ],
+      "min": [
+        -0.999887228012085,
+        -0.9999962449073792,
+        -0.9999998807907104
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 9334,
+      "max": [
+        0.9999991059303284,
+        0.9998545050621033,
+        0.999858558177948,
+        1.0
+      ],
+      "min": [
+        -0.9999919533729553,
+        -0.9999998807907104,
+        -0.9997438192367554,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 9334,
+      "max": [
+        0.4962350130081177,
+        0.9991490244865417
+      ],
+      "min": [
+        0.0024949999060481787,
+        0.013434000313282013
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 48396,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 224016,
+      "componentType": 5126,
+      "count": 9756,
+      "max": [
+        18.776647567749023,
+        13.571242332458496,
+        179.81944274902344
+      ],
+      "min": [
+        -18.76056480407715,
+        -18.02756118774414,
+        -1.499418020248413
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 341088,
+      "componentType": 5126,
+      "count": 9756,
+      "max": [
+        0.9999231100082397,
+        0.9999955296516418,
+        0.9999405741691589
+      ],
+      "min": [
+        -0.9999209046363831,
+        -0.999957263469696,
+        -0.9999047517776489
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 3,
+      "byteOffset": 149344,
+      "componentType": 5126,
+      "count": 9756,
+      "max": [
+        0.9999998807907104,
+        0.9993901252746582,
+        0.9997780919075012,
+        1.0
+      ],
+      "min": [
+        -0.9999983310699463,
+        -0.9995962977409363,
+        -0.9998576045036316,
+        -1.0
+      ],
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 74672,
+      "componentType": 5126,
+      "count": 9756,
+      "max": [
+        0.9986799955368042,
+        0.9999560117721558
+      ],
+      "min": [
+        0.5048499703407288,
+        0.502032995223999
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 193584,
+      "componentType": 5125,
+      "count": 38202,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "skeyo (https://sketchfab.com/hutcbugo)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/person-1d6f1156c1504b3499a2fcff713cff08",
+      "title": "Person"
+    },
+    "generator": "Sketchfab-12.67.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 346392,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 152720,
+      "byteOffset": 346392,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 458160,
+      "byteOffset": 499112,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 305440,
+      "byteOffset": 957272,
+      "byteStride": 16,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1262712,
+      "uri": "scene.bin"
+    }
+  ],
+  "extensionsRequired": [
+    "KHR_materials_pbrSpecularGlossiness"
+  ],
+  "extensionsUsed": [
+    "KHR_materials_pbrSpecularGlossiness"
+  ],
+  "images": [
+    {
+      "uri": "textures/PackedMaterial0_diffuse.png"
+    },
+    {
+      "uri": "textures/PackedMaterial0_specularGlossiness.png"
+    },
+    {
+      "uri": "textures/PackedMaterial0_normal.png"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_pbrSpecularGlossiness": {
+          "diffuseFactor": [
+            1.0,
+            1.0,
+            1.0,
+            1.0
+          ],
+          "diffuseTexture": {
+            "index": 0
+          },
+          "glossinessFactor": 0.0,
+          "specularFactor": [
+            0.05,
+            0.05,
+            0.05
+          ],
+          "specularGlossinessTexture": {
+            "index": 1
+          }
+        }
+      },
+      "name": "PackedMaterial0",
+      "normalTexture": {
+        "index": 2
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Object_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TANGENT": 2,
+            "TEXCOORD_0": 3
+          },
+          "indices": 4,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Object_1",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 6,
+            "POSITION": 5,
+            "TANGENT": 7,
+            "TEXCOORD_0": 8
+          },
+          "indices": 9,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2,
+        3
+      ],
+      "name": "person obj.obj.cleaner.materialmerger.gles"
+    },
+    {
+      "mesh": 0,
+      "name": "Object_2"
+    },
+    {
+      "mesh": 1,
+      "name": "Object_3"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987,
+      "wrapS": 10497,
+      "wrapT": 10497
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "source": 0
+    },
+    {
+      "sampler": 0,
+      "source": 1
+    },
+    {
+      "sampler": 0,
+      "source": 2
+    }
+  ]
+}
