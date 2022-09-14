@@ -69,14 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
         avatar.scene.position.set(-0.8, -0.75, -0.3);
 
         const anchor = new THREE.Group();
-        anchor.group.add(avatar.scene);
-        anchor.group.add(card);
-        anchor.group.add(playIcon);
-        anchor.group.add(webIcon);
-        anchor.group.add(locationIcon);
-        anchor.group.add(callIcon);
-        anchor.group.add(messageIcon);
-        anchor.group.add(emailIcon);
+        anchor.add(avatar.scene);
+        anchor.add(card);
+        anchor.add(playIcon);
+        anchor.add(webIcon);
+        anchor.add(locationIcon);
+        anchor.add(callIcon);
+        anchor.add(messageIcon);
+        anchor.add(emailIcon);
         
         //if (id === anything)
             const name = "Prasoon Srivastava";
