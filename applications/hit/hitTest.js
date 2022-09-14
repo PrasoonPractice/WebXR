@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				avatar.position.z = reticle.position.z - 0.5;
 				avatar.visible = false;
 				scene.add(avatar);
+								
 			},
 			function (loading) {
 				console.log("loading avatar");
@@ -63,6 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				avatar.visible = true;
 				console.log(avatar);
 				console.log("Avatar rendered at reticle");
+				const geometry = new THREE.BoxGeometry(0.06, 0.06, 0.06); 
+      				const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+      				const mesh = new THREE.Mesh(geometry, material);
+      				mesh.position.applyMatrix4(controller.matrixWorld);
+      				scene.add(mesh);
+				console.log("Cube rendered at reticle");
 				reticle.visible = false;
 				counter = true;
 				console.log("counter is now true");
