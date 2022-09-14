@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     		reticle.visible = false;
     		scene.add(reticle);
 		console.log("reticle added");
+		//lod the 3d model using a loder object
+		const avatar = await loadGLTF('../Project1/Avatar.glb');
+		avatar.scene.scale.set(1, 0.85, 1);
 		//Create a renderer
 		const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     		renderer.setPixelRatio(window.devicePixelRatio);
@@ -46,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const viewerReferenceSpace = await session.requestReferenceSpace("viewer");
 			const hitTestSource = await session.requestHitTestSource({space: viewerReferenceSpace});
 			//create a counter variable to use as a check for number of models shown
-			//var counter = false;
+			var counter = false;
 			//start a render loop i.e., to determine the runtime activities
 			renderer.setAnimationLoop((timestamp, frame) => {
 				if (!frame) return;
@@ -58,8 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
 					const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
 					const hitPose = hit.getPose(referenceSpace);
 					//show where the x,y,z origin will be set in case of an event
-					reticle.visible = true;
-					reticle.matrix.fromArray(hitPose.transform.matrix);
+					if (!counter) {
+						reticle.visible = true;
+						reticle.matrix.fromArray(hitPose.transform.matrix);
+					}
+					if (reticle.visible && avatar) {
+						avatar.position.setFromMatrixPosition(reticle.matrix);
+						scene.add(avatar);
+						console.log("Avatar rendered at reticle");
+						counter = true;
+						console.log("counter is now true");
+					}
 				} else {
 					reticle.visible = false;
 				}
