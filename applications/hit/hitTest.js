@@ -23,18 +23,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("reticle added");
 		//lod the 3d model using a loder object
 		const loader = new GLTFLoader();
-		const avatar;
 		console.log("loader");
-		loader.load(
+		await loader.load(
 			'../Project1/Avatar.glb',
 			function (gltf) {
-				avatar = gltf.scene;
+				const avatar = gltf.scene;
 				console.log("avatar loaded");
 				avatar.position.x = reticle.position.x - 0.3;
 				avatar.position.y = reticle.position.y + 0.8;
 				avatar.position.z = reticle.position.z - 0.5;
 				avatar.visible = false;
 				scene.add(avatar);
+			},
+			function (loading) {
+				console.log("loading avatar");
+				
 			}
 		);
 		//Create a renderer
