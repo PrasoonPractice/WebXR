@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						reticle.matrix.fromArray(hitPose.transform.matrix);
 					}
 					if (reticle.visible && avatar) {
-						avatar.position.setFromMatrixPosition(reticle.matrix);
+						avatar.position.applyMatrix4(reticle.matrix);
 						scene.add(avatar);
 						console.log("Avatar rendered at reticle");
 						reticle.visible = false;
