@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					}
 					if (reticle.visible && avatar) {
 						avatar.visible = true;
+						console.log(avatar);
 						console.log("Avatar rendered at reticle");
 						reticle.visible = false;
 						counter = true;
