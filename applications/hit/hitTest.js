@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("loader");
 		let avatar;
 		await loader.load(
-			'../Project1/Avatar.gltf',
+			'../Project1/person/scene.gltf',
 			function (gltf) {
 				avatar = gltf.scene;
 				console.log("avatar loaded");
