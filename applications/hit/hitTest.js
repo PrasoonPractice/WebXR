@@ -24,10 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		//lod the 3d model using a loder object
 		const loader = new GLTFLoader();
 		console.log("loader");
+		let avatar;
 		await loader.load(
 			'../Project1/Avatar.glb',
 			function (gltf) {
-				const avatar = gltf.scene;
+				avatar = gltf.scene;
 				console.log("avatar loaded");
 				avatar.position.x = reticle.position.x - 0.3;
 				avatar.position.y = reticle.position.y + 0.8;
