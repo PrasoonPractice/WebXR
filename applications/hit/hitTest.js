@@ -73,12 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
         emailIcon.position.set(1.06, -0.60, 0);
 
         //if (id === anything)
-            const avatar = await loadGLTF('../Project1/Avatar.glb');
+            //const avatar = await loadGLTF('../Project1/Avatar.glb');
         //else
         //    const avatar = await loadGLTF('./Project1/Avatar1.glb');
         
-        avatar.scene.scale.set(1, 0.85, 1);
-        avatar.scene.position.set(-0.8, -0.75, -0.3);
+        //avatar.scene.scale.set(1, 0.85, 1);
+        //avatar.scene.position.set(-0.8, -0.75, -0.3);
         
         //if (id === anything)
             const name = "Prasoon Srivastava";
@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //avatar.scene.scale.set(1, 0.85, 1);
     //avatar.scene.position.set(-0.8, -0.75, -0.3);
     
-        items.add(avatar.scene);
+        //items.add(avatar.scene);
         items.add(card);
         items.add(playIcon);
         items.add(webIcon);
