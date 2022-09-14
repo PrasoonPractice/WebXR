@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		avatar.scene.scale.set(1, 0.85, 1);
 		console.log("avatar loaded");
 		const model = avatar.scene;
+		scene.add(model);
 		const items = new THREE.Group();
 		items.add(model);
 		items.add(scene);
