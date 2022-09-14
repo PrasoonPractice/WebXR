@@ -233,14 +233,16 @@ document.addEventListener('DOMContentLoaded', () => {
                             window.location.href = "https://wa.me/919453275960";
                         } else if (o === items.emailIcon) {
                             window.location.href = "mailto:contact@falconicx.com?subject=Hello";
+                    	}
                     }
-                }
-            });
-        }
+                 }
+             });
+	}
 
       	renderer.render(scene, camera);
       });
-
+    });
+	  
     renderer.xr.addEventListener("sessionend", () => {
       console.log("session end");
     });
