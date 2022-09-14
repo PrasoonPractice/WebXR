@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     		scene.add(reticle);
 		console.log("reticle added");
 		//lod the 3d model using a loder object
-		const loader = new GLTFLoder();
+		const loader = new GLTFLoader();
 		console.log("loader");
 		loader.load(
 			'../Project1/Avatar.glb',
