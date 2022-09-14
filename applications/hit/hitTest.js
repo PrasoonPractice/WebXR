@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("loader");
 		let avatar;
 		await loader.load(
-			'https://raw.githubusercontent.com/PrasoonPractice/WebAR/main/shiba/scene.gltf',
+			'../Project1/Avatar.gltf',
 			function (gltf) {
 				avatar = gltf.scene;
 				console.log("avatar loaded");
