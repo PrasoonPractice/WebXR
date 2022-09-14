@@ -233,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			reticle.matrix.fromArray(hitPose.transform.matrix);
 		} else if (!counter && reticle.visible) {
 	    		items.visible = true;
+			scene.add(items);
 	    		counter = true;
 	}
 	}else {
