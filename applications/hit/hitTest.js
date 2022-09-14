@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 				//render scene and camera
 				renderer.render(scene, camera);
-				}
+				
 			});
 		});
 
