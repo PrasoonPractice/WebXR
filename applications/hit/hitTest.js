@@ -23,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		//lod the 3d model using a loder object
 		const avatar = await loadGLTF('../Project1/Avatar.glb');
 		avatar.scene.scale.set(1, 0.85, 1);
+		console.log("avatar loaded");
+		const model = avatar.scene;
+		const items = new THREE.Group();
+		items.add(model);
+		items.add(scene);
+		items.visible = false;
 		//Create a renderer
 		const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     		renderer.setPixelRatio(window.devicePixelRatio);
@@ -65,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
 						reticle.visible = true;
 						reticle.matrix.fromArray(hitPose.transform.matrix);
 					}
-					if (reticle.visible && avatar) {
-						avatar.position.applyMatrix4(reticle.matrix);
-						scene.add(avatar);
+					if (reticle.visible && model) {
+						items.position.applyMatrix4(reticle.matrix);
+						items.visible = true;
 						console.log("Avatar rendered at reticle");
 						reticle.visible = false;
 						counter = true;
