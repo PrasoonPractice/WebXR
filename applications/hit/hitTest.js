@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(0, 0, -2.97);
+		label.position.set(-0.5, -1.25, -2.97);
 		console.log("Lable generated");
 		const xPose = label.position.x;
 		const yPose = label.position.y;
@@ -75,9 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			function (gltf) {
 				avatar = gltf.scene;
 				avatar.scale.set(0.012, 0.012, 0.012);
-				avatar.position.x = xPose - 0.006 ;
-				avatar.position.y = yPose - 0.006 ;
-				avatar.position.z = zPose ;
+				avatar.position.x = xPose - 1 ;
+				avatar.position.y = yPose - 1.5 ;
+				avatar.position.z = zPose + 0.003;
 				console.log("avatar loaded");				
 				items.add(avatar);
 				console.log("Avatar added to group");
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         	//const card = new THREE.Sprite(cardMaterial);
-        	card.position.set(xPose, yPose + 1, zPose + 0.00003);
+        	card.position.set(xPose, yPose + 0.125, zPose + 0.00003);
 		console.log("Card generated");
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
@@ -132,12 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        	playIcon.position.set(xPose - 0.006, yPose, zPose + 0.03);
-        	webIcon.position.set( xPose, yPose - 0.36, zPose);
-        	locationIcon.position.set(xPose + 0.18, yPose - 0.36, zPose - 0.0003);
-        	callIcon.position.set(xPose + 0.36, yPose - 0.36, zPose);
-        	messageIcon.position.set(xPose + 0.54, yPose - 0.36, zPose);
-        	emailIcon.position.set(xPose + 0.72, yPose - 0.36, zPose);
+        	playIcon.position.set(xPose - 1, yPose, zPose + 0.03);
+        	webIcon.position.set( xPose, yPose - 0.26, zPose);
+        	locationIcon.position.set(xPose + 0.2, yPose - 0.26, zPose - 0.0003);
+        	callIcon.position.set(xPose + 0.4, yPose - 0.26, zPose);
+        	messageIcon.position.set(xPose + 0.6, yPose - 0.26, zPose);
+        	emailIcon.position.set(xPose + 0.8, yPose - 0.26, zPose);
 		console.log("Icones generated");
 		
 		items.add(card);
