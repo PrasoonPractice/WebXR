@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			function (gltf) {
 				avatar = gltf.scene;
 				console.log("avatar loaded");
-				avatar.position.x = reticle.position.x - 0.3;
-				avatar.position.y = reticle.position.y + 0.8;
-				avatar.position.z = reticle.position.z - 0.5;
+				avatar.position.x = reticle.position.x - 0.03;
+				avatar.position.y = reticle.position.y + 0.08;
+				avatar.position.z = reticle.position.z - 0.05;
 				avatar.visible = false;
 				scene.add(avatar);
 								
@@ -60,16 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		controller.addEventListener('select', () => {
 			console.log("select");
 			if (reticle.visible && avatar) {
-				avatar.scale.set(1, 1, 1);
+				avatar.scale.set(0.05, 0.05, 0.05);
 				avatar.visible = true;
 				console.log(avatar);
 				console.log("Avatar rendered at reticle");
-				const geometry = new THREE.BoxGeometry(0.06, 0.06, 0.06); 
-      				const material = new THREE.MeshBasicMaterial({ color: 0xffffff });
-      				const mesh = new THREE.Mesh(geometry, material);
-      				mesh.position.applyMatrix4(controller.matrixWorld);
-      				scene.add(mesh);
-				console.log("Cube rendered at reticle");
 				reticle.visible = false;
 				counter = true;
 				console.log("counter is now true");
