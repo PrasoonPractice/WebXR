@@ -30,8 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			'../Project1/person/scene.gltf',
 			function (gltf) {
 				avatar = gltf.scene;
-				console.log("avatar loaded");
-				avatar.matrix.fromArray(originPosition);
+				console.log("avatar loaded");				
 				avatar.visible = false;
 				scene.add(avatar);
 								
@@ -60,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log("select");
 			if (reticle.visible && avatar) {
 				avatar.scale.set(0.0019, 0.0019, 0.0019);
+				avatar.matrix.fromArray(originPosition);
 				avatar.visible = true;
 				console.log(avatar);
 				console.log("Avatar rendered at reticle");
