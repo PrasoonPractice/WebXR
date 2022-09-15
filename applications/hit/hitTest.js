@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(0.2, -0.285, -2.97);
+		label.position.set(0.2, -0.285, -3.97);
 		console.log("Lable generated");
 		const xPose = label.position.x;
 		const yPose = label.position.y;
