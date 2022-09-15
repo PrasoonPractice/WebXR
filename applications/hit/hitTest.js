@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		controller.addEventListener('select', () => {
 			console.log("select");
 			if (reticle.visible && avatar) {
-				avatar.scale.set(0.05, 0.05, 0.05);
+				avatar.scale.set(0.005, 0.005, 0.005);
 				avatar.visible = true;
 				console.log(avatar);
 				console.log("Avatar rendered at reticle");
