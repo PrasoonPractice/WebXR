@@ -157,8 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log("Session start");
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
-				console.log("All items added to scene and rendered");
 			});
+			console.log("All items added to scene and rendered");
 		});
 
     		renderer.xr.addEventListener("sessionend", () => {
