@@ -8,7 +8,7 @@ const name = "Prasoon Srivastava";
 function makeLabelCanvas(size, name) {
 	const borderSize = 2;
 	const ctx = document.createElement('canvas').getContext('2d');
-	const font = `${size}px bold sans-serif`;
+	const font = `oblique ${size}px lighter sans-serif`;
 	ctx.font = font;
 	// measure how long the name will be
 	const doubleBorderSize = borderSize * 2;
