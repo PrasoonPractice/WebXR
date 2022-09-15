@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			'../Project1/person/scene.gltf',
 			function (gltf) {
 				avatar = gltf.scene;
-				avatar.scale.set(0.01, 0.01, 0.01);
-				avatar.position.set(-0.08, -0.075, -1);
+				avatar.scale.set(0.006, 0.006, 0.006);
+				avatar.position.set(-0.18, -0.075, -1.5);
 				console.log("avatar loaded");				
 				items.add(avatar);
 				console.log("Avatar added to group");
@@ -111,10 +111,11 @@ document.addEventListener('DOMContentLoaded', () => {
         	webIcon.position.set( -0.14, -0.060, -1.5);
         	locationIcon.position.set(0.16, -0.060, -1.7);
         	callIcon.position.set(0.46, -0.060, -1.5);
-        	messageIcon.position.set(0.76, -0.60, -1.5);
+        	messageIcon.position.set(0.76, -0.060, -1.5);
         	emailIcon.position.set(0.06,-0.060, -1.5);
 		console.log("Icones generated");
 		
+		items.add(card);
 		items.add(playIcon);
 		items.add(webIcon);
 		items.add(locationIcon);
@@ -123,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		items.add(emailIcon);
 		console.log("Icones added to the group");
 		
-		const canvas =  makeLabelCanvas(30, name);
+		const canvas =  makeLabelCanvas(15, name);
 		const texture = new THREE.CanvasTexture(canvas);
 		// because our canvas is likely not a power of 2
 		// in both dimensions set the filtering appropriately.
