@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			transparent: true,
 		});
 		
+		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
 		label.position.set(0, 0, -2.97);
 		console.log("Lable generated");
@@ -106,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		console.log("Textures loaded");
 
-        	const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
         	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
