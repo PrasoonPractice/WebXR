@@ -107,12 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        	playIcon.position.set(0.080, 0.38, -0.5);
-        	webIcon.position.set( -0.014, -0.60, -1);
-        	locationIcon.position.set(0.016, -0.60, -1.2);
-        	callIcon.position.set(0.046, -0.60, -1);
-        	messageIcon.position.set(0.076, -0.60, -1);
-        	emailIcon.position.set(0.106,-0.060, -1);
+        	playIcon.position.set(0.080, 0.38, -1);
+        	webIcon.position.set( -0.14, -0.060, -1.5);
+        	locationIcon.position.set(0.16, -0.060, -1.7);
+        	callIcon.position.set(0.46, -0.060, -1.5);
+        	messageIcon.position.set(0.76, -0.60, -1.5);
+        	emailIcon.position.set(0.06,-0.060, -1.5);
 		console.log("Icones generated");
 		
 		items.add(playIcon);
