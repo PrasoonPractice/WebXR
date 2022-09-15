@@ -171,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     		renderer.xr.addEventListener("sessionend", () => {
       			console.log("session end");
+			window.location.href = "https://prasoonpractice.github.io/WebXR/applications/hit/index.html";
     		});
 		
 	}
