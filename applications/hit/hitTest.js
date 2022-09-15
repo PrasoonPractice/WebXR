@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			function (gltf) {
 				avatar = gltf.scene;
 				avatar.scale.set(0.006, 0.006, 0.006);
-				avatar.position.set(-0.18, -0.075, -1.5);
+				avatar.position.set(-0.36, -0.005, -3.5);
 				console.log("avatar loaded");				
 				items.add(avatar);
 				console.log("Avatar added to group");
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         	//const card = new THREE.Sprite(cardMaterial);
-        	card.position.set(0.05, 0.04, -1);
+        	card.position.set(0.815, 1, -1);
 		console.log("Card generated");
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
@@ -107,12 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        	playIcon.position.set(0.080, 0.38, -1);
-        	webIcon.position.set( -0.14, -0.060, -1.5);
-        	locationIcon.position.set(0.16, -0.060, -1.7);
-        	callIcon.position.set(0.46, -0.060, -1.5);
-        	messageIcon.position.set(0.76, -0.060, -1.5);
-        	emailIcon.position.set(0.06,-0.060, -1.5);
+        	playIcon.position.set(-0.36, -0.005, -2.95);
+        	webIcon.position.set( -0.14, -0.060, -3.5);
+        	locationIcon.position.set(0.16, -0.060, -3.7);
+        	callIcon.position.set(0.46, -0.060, -3.5);
+        	messageIcon.position.set(0.76, -0.060, -3.5);
+        	emailIcon.position.set(0.06,-0.060, -3.5);
 		console.log("Icones generated");
 		
 		items.add(card);
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 		
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(0.05, -0.026, -0.97);
+		label.position.set(0.815, -0.026, -2.97);
 		console.log("Lable generated");
 		items.add(label);
 		console.log("Lable added to the group");
