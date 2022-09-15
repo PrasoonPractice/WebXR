@@ -42,6 +42,29 @@ document.addEventListener('DOMContentLoaded', () => {
 		//creat a group to bind all the objects
 		const items = new THREE.Group();
 		
+		const canvas =  makeLabelCanvas(15, name);
+		const texture = new THREE.CanvasTexture(canvas);
+		// because our canvas is likely not a power of 2
+		// in both dimensions set the filtering appropriately.
+		texture.minFilter = THREE.LinearFilter;
+		texture.wrapS = THREE.ClampToEdgeWrapping;
+		texture.wrapT = THREE.ClampToEdgeWrapping;
+
+		const labelMaterial = new THREE.MeshBasicMaterial({
+			map: texture,
+			side: THREE.DoubleSide,
+			transparent: true,
+		});
+		
+		const label = new THREE.Mesh(planeGeometry, labelMaterial);
+		label.position.set(0, 0, -2.97);
+		console.log("Lable generated");
+		const xPose = label.position.x;
+		const yPose = label.position.y;
+		const zPose = label.position.z;
+		items.add(label);
+		console.log("Lable added to the group");
+		
 		//load the 3d model using a loder object
 		const loader = new GLTFLoader();
 		console.log("loader");
@@ -51,7 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			function (gltf) {
 				avatar = gltf.scene;
 				avatar.scale.set(0.012, 0.012, 0.012);
-				avatar.position.set(-0.36, -0.01, -3.5);
+				avatar.position.x = xPose - 0.006 ;
+				avatar.position.y = yPose - 0.006 ;
+				avatar.position.z = zPose ;
 				console.log("avatar loaded");				
 				items.add(avatar);
 				console.log("Avatar added to group");
@@ -86,13 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         	//const card = new THREE.Sprite(cardMaterial);
-        	card.position.set(0.815, 1, -1);
+        	card.position.set(xPose, yPose + 1, zPose + 0.00003);
 		console.log("Card generated");
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
         	const iconGeometry = new THREE.CircleGeometry(0.1, 32);
-        	const mapiconGeometry = new THREE.CircleGeometry(0.15, 32);
+        	const mapiconGeometry = new THREE.CircleGeometry(0.142, 32);
         	const playMaterial = new THREE.MeshBasicMaterial({ map: playTexture });
         	const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         	const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
@@ -107,12 +132,12 @@ document.addEventListener('DOMContentLoaded', () => {
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        	playIcon.position.set(-0.36, 0.005, -2.95);
-        	webIcon.position.set( 0.815, -0.052, -3.5);
-        	locationIcon.position.set(0.915, -0.052, -3.7);
-        	callIcon.position.set(1.015, -0.052, -3.5);
-        	messageIcon.position.set(1.115, -0.052, -3.5);
-        	emailIcon.position.set(1.215,-0.052, -3.5);
+        	playIcon.position.set(xPose - 0.006, yPose, zPose + 0.03);
+        	webIcon.position.set( xPose, yPose - 0.36, zPose);
+        	locationIcon.position.set(xPose + 0.18, yPose - 0.36, zPose - 0.0003);
+        	callIcon.position.set(xPose + 0.36, yPose - 0.36, zPose);
+        	messageIcon.position.set(xPose + 0.54, yPose - 0.36, zPose);
+        	emailIcon.position.set(xPose + 0.72, yPose - 0.36, zPose);
 		console.log("Icones generated");
 		
 		items.add(card);
@@ -123,27 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		items.add(messageIcon);
 		items.add(emailIcon);
 		console.log("Icones added to the group");
-		
-		const canvas =  makeLabelCanvas(15, name);
-		const texture = new THREE.CanvasTexture(canvas);
-		// because our canvas is likely not a power of 2
-		// in both dimensions set the filtering appropriately.
-		texture.minFilter = THREE.LinearFilter;
-		texture.wrapS = THREE.ClampToEdgeWrapping;
-		texture.wrapT = THREE.ClampToEdgeWrapping;
-
-		const labelMaterial = new THREE.MeshBasicMaterial({
-			map: texture,
-			side: THREE.DoubleSide,
-			transparent: true,
-		});
-		
-		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(0.815, -0.026, -2.97);
-		console.log("Lable generated");
-		items.add(label);
-		console.log("Lable added to the group");
-		
+				
 		//Create a renderer
 		const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
     		renderer.setPixelRatio(window.devicePixelRatio);
