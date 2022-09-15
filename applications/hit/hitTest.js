@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//creat a group to bind all the objects
 		const items = new THREE.Group();
 		
-		const canvas =  makeLabelCanvas(15, name);
+		const canvas =  makeLabelCanvas(18, name);
 		const texture = new THREE.CanvasTexture(canvas);
 		// because our canvas is likely not a power of 2
 		// in both dimensions set the filtering appropriately.
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(0.2, -1.285, -2.97);
+		label.position.set(0.2, -0.285, -2.97);
 		console.log("Lable generated");
 		const xPose = label.position.x;
 		const yPose = label.position.y;
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				avatar = gltf.scene;
 				avatar.scale.set(0.012, 0.012, 0.012);
 				avatar.position.x = xPose - 0.75 ;
-				avatar.position.y = yPose + 1.75 ;
+				avatar.position.y = yPose + 0.75 ;
 				avatar.position.z = zPose + 0.003;
 				console.log("avatar loaded");				
 				items.add(avatar);
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        	playIcon.position.set(xPose - 0.75, yPose + 1.745, zPose - 0.05);
+        	playIcon.position.set(xPose - 0.75, yPose + 0.745, zPose - 0.05);
         	webIcon.position.set( xPose - 0.28, yPose - 0.26, zPose);
         	locationIcon.position.set(xPose - 0.08, yPose - 0.26, zPose - 0.0003);
         	callIcon.position.set(xPose + 0.12, yPose - 0.26, zPose);
