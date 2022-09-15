@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				avatar = gltf.scene;
 				avatar.scale.set(0.012, 0.012, 0.012);
 				avatar.position.x = xPose - 0.75 ;
-				avatar.position.y = yPose + 0.25 ;
+				avatar.position.y = yPose - 0.6 ;
 				avatar.position.z = zPose + 0.003;
 				console.log("avatar loaded");				
 				items.add(avatar);
