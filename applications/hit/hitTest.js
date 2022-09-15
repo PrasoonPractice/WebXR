@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				avatar = gltf.scene;
 				avatar.scale.set(0.012, 0.012, 0.012);
 				avatar.position.x = xPose - 0.75 ;
-				avatar.position.y = yPose - 0.6 ;
-				avatar.position.z = zPose + 0.003;
+				avatar.position.y = yPose - 0.92 ;
+				avatar.position.z = zPose + 0.3;
 				console.log("avatar loaded");				
 				items.add(avatar);
 				console.log("Avatar added to group");
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        	playIcon.position.set(xPose - 0.75, yPose + 0.245, zPose - 0.05);
+        	playIcon.position.set(xPose - 0.75, yPose + 0.245, zPose - 0.2);
         	webIcon.position.set( xPose - 0.28, yPose - 0.26, zPose);
         	locationIcon.position.set(xPose - 0.08, yPose - 0.26, zPose - 0.0003);
         	callIcon.position.set(xPose + 0.12, yPose - 0.26, zPose);
