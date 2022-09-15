@@ -23,7 +23,7 @@ function makeLabelCanvas(size, name) {
 
 	ctx.fillStyle = 'rgba(0,0,0,0)';
 	ctx.fillRect(0, 0, width, height);
-	ctx.fillStyle = '#f58814';
+	ctx.fillStyle = '#d0def5';
 	//ctx.fillStyle = 'rgba(245,136,20,0.99)';
 	ctx.fillText(name, borderSize, borderSize);
 	
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(-0.3, -2.25, -2.97);
+		label.position.set(0.2, -1.25, -2.97);
 		console.log("Lable generated");
 		const xPose = label.position.x;
 		const yPose = label.position.y;
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				avatar = gltf.scene;
 				avatar.scale.set(0.012, 0.012, 0.012);
 				avatar.position.x = xPose - 1 ;
-				avatar.position.y = yPose - 1.8 ;
+				avatar.position.y = yPose - 1.5 ;
 				avatar.position.z = zPose + 0.003;
 				console.log("avatar loaded");				
 				items.add(avatar);
@@ -133,11 +133,11 @@ document.addEventListener('DOMContentLoaded', () => {
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
         	playIcon.position.set(xPose - 1, yPose, zPose - 0.03);
-        	webIcon.position.set( xPose - 0.48, yPose - 0.26, zPose);
-        	locationIcon.position.set(xPose - 0.28, yPose - 0.26, zPose - 0.0003);
+        	webIcon.position.set( xPose - 0.28, yPose - 0.26, zPose);
+        	locationIcon.position.set(xPose - 0.08, yPose - 0.26, zPose - 0.0003);
         	callIcon.position.set(xPose - 0.08, yPose - 0.26, zPose);
-        	messageIcon.position.set(xPose + 0.28, yPose - 0.26, zPose);
-        	emailIcon.position.set(xPose + 0.48, yPose - 0.26, zPose);
+        	messageIcon.position.set(xPose + 0.12, yPose - 0.26, zPose);
+        	emailIcon.position.set(xPose + 0.38, yPose - 0.26, zPose);
 		console.log("Icones generated");
 		
 		items.add(card);
