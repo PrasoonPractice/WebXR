@@ -23,7 +23,7 @@ function makeLabelCanvas(size, name) {
 
 	ctx.fillStyle = 'rgba(0,0,0,0)';
 	ctx.fillRect(0, 0, width, height);
-	ctx.fillStyle = '#d0def5';
+	ctx.fillStyle = '#ffffff';
 	//ctx.fillStyle = 'rgba(245,136,20,0.99)';
 	ctx.fillText(name, borderSize, borderSize);
 	
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//creat a group to bind all the objects
 		const items = new THREE.Group();
 		
-		const canvas =  makeLabelCanvas(18, name);
+		const canvas =  makeLabelCanvas(20, name);
 		const texture = new THREE.CanvasTexture(canvas);
 		// because our canvas is likely not a power of 2
 		// in both dimensions set the filtering appropriately.
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        	playIcon.position.set(xPose - 0.75, yPose + 0.275, zPose + 0.3);
+        	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.3);
         	webIcon.position.set( xPose - 0.28, yPose - 0.26, zPose);
         	locationIcon.position.set(xPose - 0.08, yPose - 0.26, zPose - 0.0003);
         	callIcon.position.set(xPose + 0.12, yPose - 0.26, zPose);
