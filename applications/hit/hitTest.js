@@ -4,6 +4,7 @@ import {GLTFLoader} from '../libs/three.js-r132/examples/jsm/loaders/GLTFLoader.
 import { loadAudio, loadTextures } from '../libs/loader.js';
 import {ARButton} from '../libs/three.js-r132/examples/jsm/webxr/ARButton.js';
 
+const name = "Prasoon Srivastava";
 function makeLabelCanvas(size, name) {
 	const borderSize = 2;
 	const ctx = document.createElement('canvas').getContext('2d');
