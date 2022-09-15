@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log("Session start");
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
+				renderer.render(scene, camera);
 			});
 			console.log("All items added to scene and rendered");
 		});
