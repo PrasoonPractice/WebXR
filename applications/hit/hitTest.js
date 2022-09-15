@@ -25,14 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		const loader = new GLTFLoader();
 		console.log("loader");
 		let avatar;
+		let originPosition;
 		await loader.load(
 			'../Project1/person/scene.gltf',
 			function (gltf) {
 				avatar = gltf.scene;
 				console.log("avatar loaded");
-				avatar.position.x = reticle.position.x - 0.003;
-				avatar.position.y = reticle.position.y + 0.008;
-				avatar.position.z = reticle.position.z - 0.005;
+				avatar.matrix.fromArray(originPosition);
 				avatar.visible = false;
 				scene.add(avatar);
 								
@@ -88,10 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					const hit = hitTestResults[0];
 					const referenceSpace = renderer.xr.getReferenceSpace(); // ARButton requested 'local' reference space
 					const hitPose = hit.getPose(referenceSpace);
+					originPosition = hitPose.transform.matrix;
 					//show where the x,y,z origin will be set in case of an event
 					if (!counter) {
 						reticle.visible = true;
-						reticle.matrix.fromArray(hitPose.transform.matrix);
+						reticle.matrix.fromArray(originPosition);
 					}
 					
 				} else {
