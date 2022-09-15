@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(0.2, -1.25, -2.97);
+		label.position.set(0.2, -1.285, -2.97);
 		console.log("Lable generated");
 		const xPose = label.position.x;
 		const yPose = label.position.y;
@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			function (gltf) {
 				avatar = gltf.scene;
 				avatar.scale.set(0.012, 0.012, 0.012);
-				avatar.position.x = xPose - 1 ;
-				avatar.position.y = yPose - 1.5 ;
+				avatar.position.x = xPose - 0.5 ;
+				avatar.position.y = yPose - 1.85 ;
 				avatar.position.z = zPose + 0.003;
 				console.log("avatar loaded");				
 				items.add(avatar);
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         	//const card = new THREE.Sprite(cardMaterial);
-        	card.position.set(xPose, yPose + 0.150, zPose + 0.00003);
+        	card.position.set(xPose, yPose + 0.350, zPose + 0.00003);
 		console.log("Card generated");
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
@@ -135,9 +135,9 @@ document.addEventListener('DOMContentLoaded', () => {
         	playIcon.position.set(xPose - 1, yPose, zPose - 0.03);
         	webIcon.position.set( xPose - 0.28, yPose - 0.26, zPose);
         	locationIcon.position.set(xPose - 0.08, yPose - 0.26, zPose - 0.0003);
-        	callIcon.position.set(xPose - 0.08, yPose - 0.26, zPose);
-        	messageIcon.position.set(xPose + 0.12, yPose - 0.26, zPose);
-        	emailIcon.position.set(xPose + 0.38, yPose - 0.26, zPose);
+        	callIcon.position.set(xPose + 0.12, yPose - 0.26, zPose);
+        	messageIcon.position.set(xPose + 0.32, yPose - 0.26, zPose);
+        	emailIcon.position.set(xPose + 0.52, yPose - 0.26, zPose);
 		console.log("Icones generated");
 		
 		items.add(card);
