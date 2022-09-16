@@ -140,6 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
         	emailIcon.position.set(xPose + 0.523, yPose - 0.26, zPose);
 		console.log("Icones generated");
 		
+		 //handle buttons
+		playIcon.userData.clickable = true;
+		webIcon.userData.clickable = true;
+		locationIcon.userData.clickable = true;
+		callIcon.userData.clickable = true;
+		messageIcon.userData.clickable = true;
+		emailIcon.userData.clickable = true;
+		
 		items.add(card);
 		items.add(playIcon);
 		items.add(webIcon);
@@ -158,6 +166,43 @@ document.addEventListener('DOMContentLoaded', () => {
 		const arButton = ARButton.createButton(renderer, {optionalFeatures: ['dom-overlay'], domOverlay: {root: document.body}});
     		document.body.appendChild(renderer.domElement);
     		document.body.appendChild(arButton);
+		
+		const controller = renderer.xr.getController(0);
+		scene.add(controller);
+		controller.addEventListener('select', () => {
+			document.body.addEventListener('click', (e) => {
+				const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+				const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+				const mouse = new THREE.Vector2(mouseX, mouseY);
+				const raycaster = new THREE.Raycaster();
+				raycaster.setFromCamera(mouse, camera);
+				const intersects = raycaster.intersectObjects(scene.children, true);
+				
+				if (intersects.length > 0) {
+					let o = intersects[0].object;
+					while (o.parent && !o.userData.clickable) {
+						o = o.parent;
+					}
+					if (o.userData.clickable) {
+						if (o === playIcon) {
+							console.log("intro");
+							//audio.play();
+							//playIcon.visible = false;
+						} else if (o === webIcon) {
+							window.location.href = " https://falconicx.com/";
+						} else if (o === locationIcon) {
+							console.log("loc");
+						} else if (o === callIcon) {
+							window.location.href = "tel://+919453275960";
+						} else if (o === messageIcon) {
+							window.location.href = "https://wa.me/919453275960";
+						} else if (o === emailIcon) {
+							window.location.href = "mailto:contact@falconicx.com?subject=Hello";
+						}
+					}
+				}
+			});
+		});
 
 		//creat an event listner for when an event occure once an event start
 		renderer.xr.addEventListener("sessionstart", async (e) => {
