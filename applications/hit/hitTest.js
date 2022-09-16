@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(0.2, -0.285, -3);
+		label.position.set(0.2, -0.285, -2);
 		console.log("Lable generated");
 		const xPose = label.position.x;
 		const yPose = label.position.y;
@@ -169,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const controller = renderer.xr.getController(0);
 		scene.add(controller);
+		console.log(controller);
 		controller.addEventListener('select', () => {
 			document.body.addEventListener('click', (e) => {
 				const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -207,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//creat an event listner for when an event occure once an event start
 		renderer.xr.addEventListener("sessionstart", async (e) => {
 			console.log("Session start");
-			document.getElementById('header').style.display='block'
+			document.querrySelector('header').style.display='block'
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
 				renderer.render(scene, camera);
