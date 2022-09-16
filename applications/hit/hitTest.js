@@ -197,7 +197,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (o === playIcon) {
 						console.log("intro");
 						audio.play();
-						playIcon.visible = false;
 					} else if (o === webIcon) {
 						window.location.href = " https://falconicx.com/";
 					} else if (o === locationIcon) {
@@ -220,10 +219,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.getElementById("Header").setAttribute("hidden", "hidden");
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
-				if (!audio.paused)
+				if (!audio.paused) {
 					playIcon.visible = false;
-				else
+				} else {
 					playIcon.visible = true;
+				}
 				renderer.render(scene, camera);
 			});
 			console.log("All items added to scene and rendered");
