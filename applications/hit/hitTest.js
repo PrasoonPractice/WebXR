@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//creat an event listner for when an event occure once an event start
 		renderer.xr.addEventListener("sessionstart", async (e) => {
 			console.log("Session start");
-			document.querrySelector('header').style.visibility = 'hidden';
+			document.getElementById("Header").setAttribute("hidden", "hidden");
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
 				renderer.render(scene, camera);
