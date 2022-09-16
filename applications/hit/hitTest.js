@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
-        	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.1);
+        	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.18);
         	webIcon.position.set( xPose - 0.3, yPose - 0.26, zPose);
         	locationIcon.position.set(xPose - 0.1, yPose - 0.26, zPose - 0.0003);
         	callIcon.position.set(xPose + 0.1, yPose - 0.26, zPose);
