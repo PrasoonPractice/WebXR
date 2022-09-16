@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (o === playIcon) {
 						console.log("intro");
 						audio.play();
-						items.playIcon.visible = false;
+						playIcon.visible=false;
 						console.log(audio);
 					} else if (o === webIcon) {
 						window.location.href = " https://falconicx.com/";
@@ -224,9 +224,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
 				if (!audio.paused) {
-					playIcon.visible = true;
-				} else {
 					playIcon.visible = false;
+				} else {
+					playIcon.visible = true;
 				}
 				renderer.render(scene, camera);
 			});
