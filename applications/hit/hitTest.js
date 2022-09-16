@@ -188,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					} else if (o === webIcon) {
 						window.location.href = " https://falconicx.com/";
 					} else if (o === locationIcon) {
+						window.location.href = "https://www.google.com/maps/dir//Good+Earth+City+Center+Mall,+Vikas+Marg,+Pocket+H,+Nirvana+Country,+Sector+50,+Gurugram,+Haryana+122018/";
 						console.log("loc");
 					} else if (o === callIcon) {
 						window.location.href = "tel://+919453275960";
