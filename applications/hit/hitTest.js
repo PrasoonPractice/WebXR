@@ -162,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//creat an event listner for when an event occure once an event start
 		renderer.xr.addEventListener("sessionstart", async (e) => {
 			console.log("Session start");
+			document.querySelector('header').visible = false;
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
 				renderer.render(scene, camera);
