@@ -71,14 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("loader");
 		let avatar;
 		await loader.load(
-			'../Project1/person/scene.gltf',
+			'../Project1/person/Avatar.gltf',
 			function (gltf) {
 				avatar = gltf.scene;
 				avatar.scale.set(0.012, 0.012, 0.012);
 				avatar.position.x = xPose - 0.75 ;
 				avatar.position.y = yPose - 1.22 ;
 				avatar.position.z = zPose - 0.2;
-				console.log("avatar loaded");				
+				console.log(avatar);				
 				items.add(avatar);
 				console.log("Avatar added to group");
 			},
@@ -182,6 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
     		document.body.appendChild(renderer.domElement);
     		document.body.appendChild(arButton);
 		
+		const mixer = new THREE.AnimationMixer(avatar);
+		const action = mixer.clipAction(avatar.animations[0]);
+		action.play();
+		
 		document.body.addEventListener('click', (e) => {
 			const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
 			const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -216,12 +220,16 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			}
 		});
+		
+		const clock = new THREE.Clock();
 
 		//creat an event listner for when an event occure once an event start
 		renderer.xr.addEventListener("sessionstart", async (e) => {
 			console.log("Session start");
 			document.getElementById("Header").setAttribute("hidden", "hidden");
 			renderer.setAnimationLoop((timestamp, frame) => {
+				const delta = clock.getDelta();
+				mixer.update(delta);
 				scene.add(items);
 				if (audio.isPlaying) {
 					playIcon.visible = false;
