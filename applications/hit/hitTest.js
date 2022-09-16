@@ -157,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//creat a button to request an XR session
 		const arButton = ARButton.createButton(renderer, {optionalFeatures: ['dom-overlay'], domOverlay: {root: document.body}});
     		document.body.appendChild(renderer.domElement);
-    		document.body.appendChild(arButton);
+    		document.querySelector('header').appendChild(arButton);
 
 		//creat an event listner for when an event occure once an event start
 		renderer.xr.addEventListener("sessionstart", async (e) => {
