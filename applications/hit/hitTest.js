@@ -67,26 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("Lable added to the group");
 		
 		//load the 3d model using a loder object
-		const loader = new GLTFLoader();
-		console.log("loader");
-		let avatar;
-		await loader.load(
-			'../Project1/person/Avatar.gltf',
-			function (gltf) {
-				avatar = gltf.scene;
-				avatar.scale.set(0.012, 0.012, 0.012);
-				avatar.position.x = xPose - 0.75 ;
-				avatar.position.y = yPose - 1.22 ;
-				avatar.position.z = zPose - 0.2;
-				console.log(avatar);				
-				items.add(avatar);
-				console.log("Avatar added to group");
-			},
-			function (loading) {
-				console.log("loading avatar");
-				
-			}
-		);
+		const avatar = await loadGLTF('../Project1/person/Avatar.gltf');
+		
+		avatar.scene.scale.set(0.012, 0.012, 0.012);
+		avatar.scene.position.x = xPose - 0.75 ;
+		avatar.scene.position.y = yPose - 1.22 ;
+		avatar.scene.position.z = zPose - 0.2;
+		console.log(avatar.scene);				
+		items.add(avatar.scene);
+		console.log("Avatar added to group");
+		
 		const [
             		playTexture,
             		cardTexture,
@@ -182,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
     		document.body.appendChild(renderer.domElement);
     		document.body.appendChild(arButton);
 		
-		const mixer = new THREE.AnimationMixer(avatar);
-		const action = mixer.clipAction(gltf.animations[0]);
+		const mixer = new THREE.AnimationMixer(avatar.scene);
+		const action = mixer.clipAction(avatar.animations[0]);
 		action.play();
 		
 		document.body.addEventListener('click', (e) => {
