@@ -156,6 +156,19 @@ document.addEventListener('DOMContentLoaded', () => {
 		items.add(messageIcon);
 		items.add(emailIcon);
 		console.log("Icones added to the group");
+		
+		const audioClip = await loadAudio('../Project1/intro.mp3');
+
+        	const listener = new THREE.AudioListener();
+        	camera.add(listener);
+
+        	const audio = new THREE.PositionalAudio(listener);
+        	
+        	audio.setBuffer(audioClip);
+        	audio.setRefDistance(100);
+        	audio.setLoop(false);
+		
+		items.add(audio);
 				
 		//Create a renderer
 		const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
@@ -183,8 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (o.userData.clickable) {
 					if (o === playIcon) {
 						console.log("intro");
-						//audio.play();
-						//playIcon.visible = false;
+						audio.play();
+						playIcon.visible = false;
 					} else if (o === webIcon) {
 						window.location.href = " https://falconicx.com/";
 					} else if (o === locationIcon) {
@@ -207,6 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.getElementById("Header").setAttribute("hidden", "hidden");
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
+				if (!audio.paused)
+					playIcon.visible = false;
+				else
+					playIcon.visible = true;
 				renderer.render(scene, camera);
 			});
 			console.log("All items added to scene and rendered");
