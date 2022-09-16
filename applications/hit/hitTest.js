@@ -221,9 +221,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
 				if (!audio.paused) {
-					playIcon.visible = false;
-				} else {
 					playIcon.visible = true;
+				} else {
+					playIcon.visible = false;
 				}
 				renderer.render(scene, camera);
 			});
