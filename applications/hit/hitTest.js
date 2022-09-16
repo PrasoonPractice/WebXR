@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		 //handle buttons
 		playIcon.userData.clickable = true;
+		playIcon.visible = true;
 		webIcon.userData.clickable = true;
 		locationIcon.userData.clickable = true;
 		callIcon.userData.clickable = true;
