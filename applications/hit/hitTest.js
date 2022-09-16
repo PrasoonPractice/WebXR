@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.getElementById("Header").setAttribute("hidden", "hidden");
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
-				if (!audio.paused) {
+				if (audio.isPlaying) {
 					playIcon.visible = false;
 				} else {
 					playIcon.visible = true;
