@@ -8,7 +8,7 @@ const name = "Prasoon Srivastava";
 function makeLabelCanvas(size, name) {
 	const borderSize = 2;
 	const ctx = document.createElement('canvas').getContext('2d');
-	const font = `oblique ${size}px lighter sans-serif`;
+	const font = `oblique ${size}px lighter Tahoma`;
 	ctx.font = font;
 	// measure how long the name will be
 	const doubleBorderSize = borderSize * 2;
@@ -56,11 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			transparent: true,
 		});
 		
-		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
+		const lableGeometry = new THREE.PlaneGeometry(0.825, 0.125);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
 		label.position.set(0.22, -0.285, -2.2);
 		console.log("Lable generated");
-		const xPose = label.position.x;
+		const xPose = label.position.x - 0.11;
 		const yPose = label.position.y;
 		const zPose = label.position.z;
 		items.add(label);
@@ -107,11 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		console.log("Textures loaded");
 
+		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
         	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         	//const card = new THREE.Sprite(cardMaterial);
-        	card.position.set(xPose, yPose + 0.33, zPose + 0.00003);
+        	card.position.set(xPose + 0.11, yPose + 0.33, zPose + 0.00003);
 		console.log("Card generated");
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
@@ -198,6 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (o === playIcon) {
 						console.log("intro");
 						audio.play();
+						playIcon.visible = false;
+						console.log(playIcon);
 					} else if (o === webIcon) {
 						window.location.href = " https://falconicx.com/";
 					} else if (o === locationIcon) {
