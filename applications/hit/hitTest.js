@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     		document.body.appendChild(arButton);
 		
 		const mixer = new THREE.AnimationMixer(avatar);
-		const action = mixer.clipAction(avatar.animations[0]);
+		const action = mixer.clipAction(gltf.animations[0]);
 		action.play();
 		
 		document.body.addEventListener('click', (e) => {
