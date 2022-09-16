@@ -167,10 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
     		document.body.appendChild(renderer.domElement);
     		document.body.appendChild(arButton);
 		
-		const controller = renderer.xr.getController(0);
-		scene.add(controller);
-		console.log(controller);
-		controller.addEventListener('select', () => {
 		document.body.addEventListener('click', (e) => {
 			const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
 			const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -202,7 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					}
 				}
 			}
-		});
 		});
 
 		//creat an event listner for when an event occure once an event start
