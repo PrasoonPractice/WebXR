@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//load the 3d model using a loder object
 		const avatar = await loadGLTF('../Project1/person/Avatar.gltf');
 		
-		avatar.scene.scale.set(0.012, 0.012, 0.012);
+		avatar.scene.scale.set(1.2, 1.2, 1.2);
 		avatar.scene.position.x = xPose - 0.75 ;
 		avatar.scene.position.y = yPose - 1.22 ;
 		avatar.scene.position.z = zPose - 0.2;
