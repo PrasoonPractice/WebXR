@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const lableGeometry = new THREE.PlaneGeometry(0.825, 0.125);
 		const label = new THREE.Mesh(lableGeometry, labelMaterial);
-		label.position.set(0.22, -0.285, -2.2);
+		label.position.set(0.22, -0.255, -2.2);
 		console.log("Lable generated");
 		const xPose = label.position.x - 0.11;
 		const yPose = label.position.y;
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				avatar = gltf.scene;
 				avatar.scale.set(0.012, 0.012, 0.012);
 				avatar.position.x = xPose - 0.75 ;
-				avatar.position.y = yPose - 0.92 ;
+				avatar.position.y = yPose - 1.22 ;
 				avatar.position.z = zPose - 0.2;
 				console.log("avatar loaded");				
 				items.add(avatar);
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         	//const card = new THREE.Sprite(cardMaterial);
-        	card.position.set(xPose + 0.11, yPose + 0.33, zPose + 0.00003);
+        	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00003);
 		console.log("Card generated");
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
@@ -199,8 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (o === playIcon) {
 						console.log("intro");
 						audio.play();
-						playIcon.visible = false;
-						console.log(playIcon);
+						items.playIcon.visible = false;
+						console.log(audio);
 					} else if (o === webIcon) {
 						window.location.href = " https://falconicx.com/";
 					} else if (o === locationIcon) {
