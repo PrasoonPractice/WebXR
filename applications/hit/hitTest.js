@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(0.2, -0.285, -2);
+		label.position.set(0.2, -0.285, -2.25);
 		console.log("Lable generated");
 		const xPose = label.position.x;
 		const yPose = label.position.y;
@@ -171,44 +171,44 @@ document.addEventListener('DOMContentLoaded', () => {
 		scene.add(controller);
 		console.log(controller);
 		controller.addEventListener('select', () => {
-			document.body.addEventListener('click', (e) => {
-				const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-				const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-				const mouse = new THREE.Vector2(mouseX, mouseY);
-				const raycaster = new THREE.Raycaster();
-				raycaster.setFromCamera(mouse, camera);
-				const intersects = raycaster.intersectObjects(scene.children, true);
+		document.body.addEventListener('click', (e) => {
+			const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+			const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+			const mouse = new THREE.Vector2(mouseX, mouseY);
+			const raycaster = new THREE.Raycaster();
+			raycaster.setFromCamera(mouse, camera);
+			const intersects = raycaster.intersectObjects(scene.children, true);
 				
-				if (intersects.length > 0) {
-					let o = intersects[0].object;
-					while (o.parent && !o.userData.clickable) {
-						o = o.parent;
-					}
-					if (o.userData.clickable) {
-						if (o === playIcon) {
-							console.log("intro");
-							//audio.play();
-							//playIcon.visible = false;
-						} else if (o === webIcon) {
-							window.location.href = " https://falconicx.com/";
-						} else if (o === locationIcon) {
-							console.log("loc");
-						} else if (o === callIcon) {
-							window.location.href = "tel://+919453275960";
-						} else if (o === messageIcon) {
-							window.location.href = "https://wa.me/919453275960";
-						} else if (o === emailIcon) {
-							window.location.href = "mailto:contact@falconicx.com?subject=Hello";
-						}
+			if (intersects.length > 0) {
+				let o = intersects[0].object;
+				while (o.parent && !o.userData.clickable) {
+					o = o.parent;
+				}
+				if (o.userData.clickable) {
+					if (o === playIcon) {
+						console.log("intro");
+						//audio.play();
+						//playIcon.visible = false;
+					} else if (o === webIcon) {
+						window.location.href = " https://falconicx.com/";
+					} else if (o === locationIcon) {
+						console.log("loc");
+					} else if (o === callIcon) {
+						window.location.href = "tel://+919453275960";
+					} else if (o === messageIcon) {
+						window.location.href = "https://wa.me/919453275960";
+					} else if (o === emailIcon) {
+						window.location.href = "mailto:contact@falconicx.com?subject=Hello";
 					}
 				}
-			});
+			}
+		});
 		});
 
 		//creat an event listner for when an event occure once an event start
 		renderer.xr.addEventListener("sessionstart", async (e) => {
 			console.log("Session start");
-			document.querrySelector('header').style.display='block'
+			document.querrySelector('header').style.visibility = 'hidden';
 			renderer.setAnimationLoop((timestamp, frame) => {
 				scene.add(items);
 				renderer.render(scene, camera);
