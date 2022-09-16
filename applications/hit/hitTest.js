@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//creat a group to bind all the objects
 		const items = new THREE.Group();
 		
-		const canvas =  makeLabelCanvas(30, name);
+		const canvas =  makeLabelCanvas(60, name);
 		const texture = new THREE.CanvasTexture(canvas);
 		// because our canvas is likely not a power of 2
 		// in both dimensions set the filtering appropriately.
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
 		const label = new THREE.Mesh(planeGeometry, labelMaterial);
-		label.position.set(0.22, -0.295, -2.25);
+		label.position.set(0.22, -0.285, -2.2);
 		console.log("Lable generated");
 		const xPose = label.position.x;
 		const yPose = label.position.y;
