@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("Avatar added to group");
 		
 		const [
+			cardbgTexture,
             		playTexture,
             		cardTexture,
             		webTexture,
@@ -86,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
             		messageTexture,
             		emailTexture,
         	] = await loadTextures([
+			'../Project1/cardbg.png',
             		'../Project1/play.png',
             		'../Project1/card.png',
             		'../Project1/web.png',
@@ -100,10 +102,17 @@ document.addEventListener('DOMContentLoaded', () => {
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
         	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
+		
+		const bgGeometry = new THREE.PlaneGeometry(1.74, 0.79);
+        	const cardbgMaterial = new THREE.MeshBasicMaterial({ map: cardbgTexture, opacity: 0.4});
+        	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
+		
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         	//const card = new THREE.Sprite(cardMaterial);
         	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00003);
 		console.log("Card generated");
+		
+		cardbg.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00005);
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
@@ -141,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		emailIcon.userData.clickable = true;
 		
 		items.add(card);
+		items.add(cardbg);
 		items.add(playIcon);
 		items.add(webIcon);
 		items.add(locationIcon);
