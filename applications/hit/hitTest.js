@@ -23,7 +23,7 @@ function makeLabelCanvas(size, name) {
 
 	ctx.fillStyle = 'rgba(0,0,0,0)';
 	ctx.fillRect(0, 0, width, height);
-	ctx.fillStyle = '#ffffff';
+	ctx.fillStyle = '#3b329c';
 	//ctx.fillStyle = 'rgba(245,136,20,0.99)';
 	ctx.fillText(name, borderSize, borderSize);
 	
