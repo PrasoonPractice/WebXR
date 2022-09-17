@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
 		
 		const bgGeometry = new THREE.PlaneGeometry(0.85, 0.55);
-        	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x541994, transparent: true, opacity: 0.6});
+        	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.6});
         	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
 		
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
@@ -110,10 +110,10 @@ document.addEventListener('DOMContentLoaded', () => {
         	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.0003);
 		console.log("Card generated");
 		
-		cardbg.position.set(xPose + 0.11001, yPose + 0.18, zPose - 0.0001);
+		cardbg.position.set(xPose + 0.11001, yPose + 0.18, zPose - 0.001);
 		
 		const shelfgeometry = new THREE.BoxGeometry(0.97, 0.025, 0.25);
-		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.4});
+		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0x541994, transparent: true, opacity: 0.4});
 		const shelf = new THREE.Mesh(shelfgeometry, shelfmaterial);
 		
 		shelf.position.set( xPose + 0.1, yPose - 0.4, zPose);
