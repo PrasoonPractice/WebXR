@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture, color: 0x00ffff, transparent: true, opacity: 0.5 });
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
 		
-		const bgGeometry = new THREE.PlaneGeometry(0.817, 0.5);
+		const bgGeometry = new THREE.PlaneGeometry(0.82, 0.53);
         	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, opacity: 0.4});
         	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
 		
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00003);
 		console.log("Card generated");
 		
-		cardbg.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00001);
+		cardbg.position.set(xPose + 0.11001, yPose + 0.19, zPose + 0.00001);
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
