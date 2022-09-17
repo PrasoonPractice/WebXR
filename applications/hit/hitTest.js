@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
         	const iconGeometry = new THREE.CircleGeometry(0.1, 32);
+		const mapiconGeometry = new THREE.CircleGeometry(0.14, 32);
         	const playMaterial = new THREE.MeshBasicMaterial({ map: playTexture });
         	const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         	const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
@@ -130,14 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         	const playIcon = new THREE.Mesh(iconGeometry, playMaterial);
         	const webIcon = new THREE.Mesh(iconGeometry, webMaterial);
-        	const locationIcon = new THREE.Mesh(iconGeometry, locationMaterial);
+        	const locationIcon = new THREE.Mesh(mapiconGeometry, locationMaterial);
         	const callIcon = new THREE.Mesh(iconGeometry, callMaterial);
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
         	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.18);
         	webIcon.position.set( xPose - 0.3, yPose - 0.26, zPose);
-        	locationIcon.position.set(xPose - 0.1, yPose - 0.26, zPose - 0.0003);
+        	locationIcon.position.set(xPose - 0.1, yPose - 0.255, zPose - 0.0003);
         	callIcon.position.set(xPose + 0.1, yPose - 0.26, zPose);
         	messageIcon.position.set(xPose + 0.303, yPose - 0.26, zPose);
         	emailIcon.position.set(xPose + 0.503, yPose - 0.26, zPose);
