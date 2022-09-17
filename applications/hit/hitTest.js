@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00003);
 		console.log("Card generated");
 		
-		cardbg.position.set(xPose + 0.11001, yPose + 0.148, zPose + 0.00001);
+		cardbg.position.set(xPose + 0.11001, yPose + 0.15, zPose + 0.00001);
 		
 		const shelfgeometry = new THREE.BoxGeometry(0.97, 0.025, 0.25);
 		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.4});
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.18);
         	webIcon.position.set( xPose - 0.3, yPose - 0.246, zPose);
-        	locationIcon.position.set(xPose - 0.1, yPose - 0.243, zPose - 0.0003);
+        	locationIcon.position.set(xPose - 0.1, yPose - 0.243, zPose - 0.003);
         	callIcon.position.set(xPose + 0.1, yPose - 0.246, zPose);
         	messageIcon.position.set(xPose + 0.303, yPose - 0.246, zPose);
         	emailIcon.position.set(xPose + 0.503, yPose - 0.246, zPose);
