@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
         	const iconGeometry = new THREE.CircleGeometry(0.1, 32);
-        	const mapiconGeometry = new THREE.CircleGeometry(0.142, 32);
         	const playMaterial = new THREE.MeshBasicMaterial({ map: playTexture });
         	const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         	const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
@@ -131,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         	const playIcon = new THREE.Mesh(iconGeometry, playMaterial);
         	const webIcon = new THREE.Mesh(iconGeometry, webMaterial);
-        	const locationIcon = new THREE.Mesh(mapiconGeometry, locationMaterial);
+        	const locationIcon = new THREE.Mesh(iconGeometry, locationMaterial);
         	const callIcon = new THREE.Mesh(iconGeometry, callMaterial);
         	const messageIcon = new THREE.Mesh(iconGeometry, messageMaterial);
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
