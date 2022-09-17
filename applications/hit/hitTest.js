@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("Avatar added to group");
 		
 		const [
-			cardbgTexture,
             		playTexture,
             		cardTexture,
             		webTexture,
@@ -87,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             		messageTexture,
             		emailTexture,
         	] = await loadTextures([
-			'../Project1/cardbg.png',
             		'../Project1/play.png',
             		'../Project1/card.png',
             		'../Project1/web.png',
@@ -104,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
 		
 		const bgGeometry = new THREE.PlaneGeometry(1.74, 0.79);
-        	const cardbgMaterial = new THREE.MeshBasicMaterial({ map: cardbgTexture, opacity: 0.4});
+        	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, opacity: 0.4});
         	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
 		
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
