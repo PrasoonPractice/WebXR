@@ -98,10 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("Textures loaded");
 
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
-        	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
+        	const cardMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00, opacity: 0.4, map: cardTexture });
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
 		
-		const bgGeometry = new THREE.PlaneGeometry(1.74, 0.79);
+		const bgGeometry = new THREE.PlaneGeometry(1.74, 0.25);
         	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, opacity: 0.4});
         	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
 		
