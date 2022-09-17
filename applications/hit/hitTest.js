@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture, color: 0x00ffff, transparent: true, opacity: 0.5 });
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
 		
-		const bgGeometry = new THREE.PlaneGeometry(1.417, 0.2);
+		const bgGeometry = new THREE.PlaneGeometry(0.817, 0.5);
         	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, opacity: 0.4});
         	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
 		
