@@ -98,11 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("Textures loaded");
 
 		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
-        	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture, color: 0x00ffff, transparent: true, opacity: 0.5 });
+        	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
 		
 		const bgGeometry = new THREE.PlaneGeometry(0.82, 0.53);
-        	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, opacity: 0.4});
+        	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, transparent: true, opacity: 0.4});
         	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
 		
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
@@ -111,6 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("Card generated");
 		
 		cardbg.position.set(xPose + 0.11001, yPose + 0.19, zPose + 0.00001);
+		
+		const shelfgeometry = new THREE.BoxGeometry(0.12, 0.02, 0.01);
+		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.4});
+		const shelf = new THREE.Mesh(shelfgeometry, shelfmaterial);
+		
+		shelf.position.set( xPose + 0.1, yPose - 0.27, zPose);
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
@@ -155,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		items.add(callIcon);
 		items.add(messageIcon);
 		items.add(emailIcon);
+		items.add(shelf)
 		console.log("Icones added to the group");
 		
 		const audioClip = await loadAudio('../Project1/intro.mp3');
