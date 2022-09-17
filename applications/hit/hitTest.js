@@ -101,13 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
         	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
 		
-		const bgGeometry = new THREE.PlaneGeometry(0.82, 0.53);
+		const bgGeometry = new THREE.PlaneGeometry(0.85, 0.55);
         	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x541994, transparent: true, opacity: 0.6});
         	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
 		
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
         	//const card = new THREE.Sprite(cardMaterial);
-        	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00003);
+        	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.0003);
 		console.log("Card generated");
 		
 		cardbg.position.set(xPose + 0.11001, yPose + 0.18, zPose - 0.0001);
