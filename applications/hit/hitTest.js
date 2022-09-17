@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00003);
 		console.log("Card generated");
 		
-		cardbg.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00005);
+		cardbg.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00001);
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
