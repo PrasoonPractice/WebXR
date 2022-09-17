@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const card = new THREE.Mesh(planeGeometry, cardMaterial);
 		
 		const bgGeometry = new THREE.PlaneGeometry(0.82, 0.53);
-        	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, transparent: true, opacity: 0.4});
+        	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0x00ff00, transparent: true, opacity: 0.6});
         	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
 		
         	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.00003);
 		console.log("Card generated");
 		
-		cardbg.position.set(xPose + 0.11001, yPose + 0.12, zPose + 0.00001);
+		cardbg.position.set(xPose + 0.11001, yPose + 0.14, zPose + 0.00001);
 		
 		const shelfgeometry = new THREE.BoxGeometry(0.97, 0.025, 0.25);
 		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.4});
@@ -137,11 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
         	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.18);
-        	webIcon.position.set( xPose - 0.3, yPose - 0.26, zPose);
-        	locationIcon.position.set(xPose - 0.1, yPose - 0.255, zPose - 0.0003);
-        	callIcon.position.set(xPose + 0.1, yPose - 0.26, zPose);
-        	messageIcon.position.set(xPose + 0.303, yPose - 0.26, zPose);
-        	emailIcon.position.set(xPose + 0.503, yPose - 0.26, zPose);
+        	webIcon.position.set( xPose - 0.3, yPose - 0.252, zPose);
+        	locationIcon.position.set(xPose - 0.1, yPose - 0.25, zPose - 0.0003);
+        	callIcon.position.set(xPose + 0.1, yPose - 0.252, zPose);
+        	messageIcon.position.set(xPose + 0.303, yPose - 0.252, zPose);
+        	emailIcon.position.set(xPose + 0.503, yPose - 0.252, zPose);
 		console.log("Icones generated");
 		
 		 //handle buttons
