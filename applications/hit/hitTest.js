@@ -112,11 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		cardbg.position.set(xPose + 0.11001, yPose + 0.19, zPose + 0.00001);
 		
-		const shelfgeometry = new THREE.BoxGeometry(0.12, 0.02, 0.01);
+		const shelfgeometry = new THREE.BoxGeometry(1, 0.7, 0.5);
 		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.4});
 		const shelf = new THREE.Mesh(shelfgeometry, shelfmaterial);
 		
-		shelf.position.set( xPose + 0.1, yPose - 0.27, zPose);
+		shelf.position.set( xPose + 0.1, yPose - 0.3, zPose);
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
