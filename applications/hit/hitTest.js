@@ -246,8 +246,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log("All items added to scene and rendered");
 		});
 		
-		const clock = new THREE.Clock();
-		const delta = clock.getDelta();
 		const elapsed = clock.getElapsedTime();
 		const iconScale = 1 + 0.2 * Math.sin(elapsed*5);
 		[webIcon, emailIcon, profileIcon, locationIcon].forEach((icon) => {
