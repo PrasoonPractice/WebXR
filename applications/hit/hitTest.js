@@ -236,7 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			renderer.setAnimationLoop((timestamp, frame) => {
 				const delta = clock.getDelta();
 				mixer.update(delta);
-				const elapsed = clock.getElapsedTime();
 				const iconScale = 1 + 0.2 * Math.sin(elapsed*5);
 				if (elapsed<= 2) {
 					[webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
