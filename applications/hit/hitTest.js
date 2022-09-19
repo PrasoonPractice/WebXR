@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.18);
         	webIcon.position.set( xPose - 0.3, yPose - 0.246, zPose);
-        	locationIcon.position.set(xPose - 0.1, yPose - 0.32, zPose - 0.25001);
+        	locationIcon.position.set(xPose - 0.1, yPose - 0.32, zPose - 0.245);
         	callIcon.position.set(xPose + 0.1, yPose - 0.246, zPose);
         	messageIcon.position.set(xPose + 0.303, yPose - 0.246, zPose);
         	emailIcon.position.set(xPose + 0.503, yPose - 0.246, zPose);
@@ -227,7 +227,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 		
 		const clock = new THREE.Clock();
-		const elapsed = clock.getElapsedTime();
 
 		//creat an event listner for when an event occure once an event start
 		renderer.xr.addEventListener("sessionstart", async (e) => {
@@ -236,6 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			renderer.setAnimationLoop((timestamp, frame) => {
 				const delta = clock.getDelta();
 				mixer.update(delta);
+				const elapsed = clock.getElapsedTime();
 				const iconScale = 1 + 0.2 * Math.sin(elapsed*5);
 				if (elapsed<= 2) {
 					[webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
