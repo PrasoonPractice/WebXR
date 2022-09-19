@@ -1,5 +1,5 @@
 import { CSS3DObject } from '../../libs/three.js-r132/examples/jsm/renderers/CSS3DRenderer.js';
-import {mockWithVideo, mockWithImage} from '../../libs/camera-mock';
+import {mockWithVideo, mockWithImage} from '../../libs/camera-mock.js';
 import {loadGLTF, loadTexture, loadTextures, loadVideo} from '../../libs/loader.js';
 const THREE = window.MINDAR.IMAGE.THREE;
 
