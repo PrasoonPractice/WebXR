@@ -238,9 +238,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				mixer.update(delta);
 				const elapsed = clock.getElapsedTime();
 				const iconScale = 1 + 0.2 * Math.sin(elapsed*5);
-				[playIcon, webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
-					icon.scale.set(iconScale, iconScale, iconScale);
-				});
+				if (elapsed<= 2) {
+					[webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
+						icon.scale.set(iconScale, iconScale, iconScale);
+					});
+				}
 
 				scene.add(items);
 				if (audio.isPlaying) {
@@ -253,13 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			console.log("All items added to scene and rendered");
 		});
 		
-		const elapsed = clock.getElapsedTime();
-		const iconScale = 1 + 0.2 * Math.sin(elapsed*5);
-		if (elapsed<= 2) {
-			[webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
-				icon.scale.set(iconScale, iconScale, iconScale);
-			});
-		}
+
 
     		renderer.xr.addEventListener("sessionend", () => {
       			console.log("session end");
