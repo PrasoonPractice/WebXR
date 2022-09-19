@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0x541994, transparent: true, opacity: 0.4});
 		const shelf = new THREE.Mesh(shelfgeometry, shelfmaterial);
 		
-		shelf.position.set( xPose + 0.1, yPose - 0.45, zPose);
+		shelf.position.set( xPose + 0.1, yPose - 0.435, zPose);
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
