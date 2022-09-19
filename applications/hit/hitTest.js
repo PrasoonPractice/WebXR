@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		items.add(callIcon);
 		items.add(messageIcon);
 		items.add(emailIcon);
-		items.add(shelf)
+		items.add(shelf);
 		console.log("Icones added to the group");
 		
 		const audioClip = await loadAudio('../Project1/intro.mp3');
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const elapsed = clock.getElapsedTime();
 		const iconScale = 1 + 0.2 * Math.sin(elapsed*5);
-		[webIcon, emailIcon, profileIcon, locationIcon].forEach((icon) => {
+		[playIcon, webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
 			icon.scale.set(iconScale, iconScale, iconScale);
 		});
 
