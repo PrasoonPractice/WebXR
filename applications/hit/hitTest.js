@@ -227,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 		
 		const clock = new THREE.Clock();
+		const elapsed = clock.getElapsedTime();
 
 		//creat an event listner for when an event occure once an event start
 		renderer.xr.addEventListener("sessionstart", async (e) => {
@@ -255,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const elapsed = clock.getElapsedTime();
 		const iconScale = 1 + 0.2 * Math.sin(elapsed*5);
 		if (elapsed<= 2) {
-			[playIcon, webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
+			[webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
 				icon.scale.set(iconScale, iconScale, iconScale);
 			});
 		}
