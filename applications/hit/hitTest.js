@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0x541994, transparent: true, opacity: 0.4});
 		const shelf = new THREE.Mesh(shelfgeometry, shelfmaterial);
 		
-		shelf.position.set( xPose + 0.1, yPose - 0.4, zPose);
+		shelf.position.set( xPose + 0.1, yPose - 0.45, zPose);
         
         	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
 
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.18);
         	webIcon.position.set( xPose - 0.3, yPose - 0.246, zPose);
-        	locationIcon.position.set(xPose - 0.1, yPose - 0.318, zPose - 0.245);
+        	locationIcon.position.set(xPose - 0.1, yPose - 0.313, zPose - 0.245);
         	callIcon.position.set(xPose + 0.1, yPose - 0.246, zPose);
         	messageIcon.position.set(xPose + 0.303, yPose - 0.246, zPose);
         	emailIcon.position.set(xPose + 0.503, yPose - 0.246, zPose);
