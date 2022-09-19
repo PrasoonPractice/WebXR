@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.18);
         	webIcon.position.set( xPose - 0.3, yPose - 0.246, zPose);
-        	locationIcon.position.set(xPose - 0.1, yPose - 0.348, zPose - 0.25001);
+        	locationIcon.position.set(xPose - 0.1, yPose - 0.34, zPose - 0.25001);
         	callIcon.position.set(xPose + 0.1, yPose - 0.246, zPose);
         	messageIcon.position.set(xPose + 0.303, yPose - 0.246, zPose);
         	emailIcon.position.set(xPose + 0.503, yPose - 0.246, zPose);
@@ -235,6 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
 			renderer.setAnimationLoop((timestamp, frame) => {
 				const delta = clock.getDelta();
 				mixer.update(delta);
+				const elapsed = clock.getElapsedTime();
+				const iconScale = 1 + 0.2 * Math.sin(elapsed*5);
+				[playIcon, webIcon, locationIcon, callIcon, messageIcon, emailIcon].forEach((icon) => {
+					icon.scale.set(iconScale, iconScale, iconScale);
+				});
+
 				scene.add(items);
 				if (audio.isPlaying) {
 					playIcon.visible = false;
