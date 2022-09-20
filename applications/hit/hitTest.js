@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		 //handle buttons
 		playIcon.userData.clickable = true;
 		playIcon.visible = true;
-		pauseIcon.userData.clickable = true;
+		//pauseIcon.userData.clickable = true;
 		pauseIcon.visible = false;
 		webIcon.userData.clickable = true;
 		locationIcon.userData.clickable = true;
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						playIcon.visible=false;
 						pauseIcon.visible=true;
 						console.log(audio);
-					} else if (o === pauseIcon && pauseIcon.visible) {
+					} else if (o === playIcon && pauseIcon.visible) {
 						console.log("intro paused");
 						audio.pause();
 						playIcon.visible=true;
