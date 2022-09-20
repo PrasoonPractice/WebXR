@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		//create light
 		const light = new THREE.HemisphereLight( 0xffffff, 0xbbbbff, 1 );
 		scene.add(light);
+		//write a code for loading screen
+		
 		//creat a group to bind all the objects
 		const items = new THREE.Group();
 		
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		texture.minFilter = THREE.LinearFilter;
 		texture.wrapS = THREE.ClampToEdgeWrapping;
 		texture.wrapT = THREE.ClampToEdgeWrapping;
-
+		//create the lable
 		const labelMaterial = new THREE.MeshBasicMaterial({
 			map: texture,
 			side: THREE.DoubleSide,
@@ -77,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		items.add(avatar.scene);
 		console.log("Avatar added to group");
 		
+		//create icones, card, card background and icon shelf
 		const [
             		playTexture,
 			pauseTexture,
@@ -98,31 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
         	]);
 		
 		console.log("Textures loaded");
-
-		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
-        	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
-        	const card = new THREE.Mesh(planeGeometry, cardMaterial);
-		
-		const bgGeometry = new THREE.PlaneGeometry(0.85, 0.55);
-        	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.6});
-        	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
-		
-        	//const cardMaterial = new THREE.SpriteMaterial({ map: cardTexture, transparent: false, opacity: 0.5 });
-        	//const card = new THREE.Sprite(cardMaterial);
-        	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.0003);
-		console.log("Card generated");
-		
-		cardbg.position.set(xPose + 0.11001, yPose + 0.18, zPose - 0.001);
-		
-		const shelfgeometry = new THREE.BoxGeometry(0.97, 0.025, 0.25);
-		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0x541994, transparent: true, opacity: 0.4});
-		const shelf = new THREE.Mesh(shelfgeometry, shelfmaterial);
-		
-		shelf.position.set( xPose + 0.1, yPose - 0.435, zPose);
-        
-        	//const labelGeometry = new THREE.PlaneBufferGeometry(1.63, 0.5);
-
-        	const iconGeometry = new THREE.CircleGeometry(0.1, 32);
+		//icones
+		const iconGeometry = new THREE.CircleGeometry(0.1, 32);
         	const playMaterial = new THREE.MeshBasicMaterial({ map: playTexture });
 		const pauseMaterial = new THREE.MeshBasicMaterial({ map: pauseTexture });
         	const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
@@ -151,14 +131,36 @@ document.addEventListener('DOMContentLoaded', () => {
 		 //handle buttons
 		playIcon.userData.clickable = true;
 		playIcon.visible = true;
-		//pauseIcon.userData.clickable = true;
 		pauseIcon.visible = false;
 		webIcon.userData.clickable = true;
 		locationIcon.userData.clickable = true;
 		callIcon.userData.clickable = true;
 		messageIcon.userData.clickable = true;
 		emailIcon.userData.clickable = true;
+
+		//card
+		const planeGeometry = new THREE.PlaneGeometry(0.815, 0.25);
+        	const cardMaterial = new THREE.MeshBasicMaterial({ map: cardTexture });
+        	const card = new THREE.Mesh(planeGeometry, cardMaterial);
+        	card.position.set(xPose + 0.11, yPose + 0.29, zPose + 0.0003);
 		
+		//add a background to the card and position it behind card and lable
+		const bgGeometry = new THREE.PlaneGeometry(0.85, 0.55);
+        	const cardbgMaterial = new THREE.MeshBasicMaterial({color: 0xffffff, transparent: true, opacity: 0.6});
+        	const cardbg = new THREE.Mesh(bgGeometry, cardbgMaterial);
+				
+		cardbg.position.set(xPose + 0.11001, yPose + 0.18, zPose - 0.001);
+		console.log("Card and background generated");
+		
+		//create the shelf for icones
+		const shelfgeometry = new THREE.BoxGeometry(0.97, 0.025, 0.25);
+		const shelfmaterial = new THREE.MeshBasicMaterial({color: 0x541994, transparent: true, opacity: 0.4});
+		const shelf = new THREE.Mesh(shelfgeometry, shelfmaterial);
+		
+		shelf.position.set( xPose + 0.1, yPose - 0.43, zPose);
+		console.log("Icon shelf generated");
+		
+		//add everything to the group
 		items.add(card);
 		items.add(cardbg);
 		items.add(playIcon);
@@ -169,8 +171,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		items.add(messageIcon);
 		items.add(emailIcon);
 		items.add(shelf);
-		console.log("Icones added to the group");
+		console.log("All 3D assets added to the group");
 		
+		//Load audio and listner and add them to group
 		const audioClip = await loadAudio('../Project1/intro.mp3');
 
         	const listener = new THREE.AudioListener();
@@ -181,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	audio.setBuffer(audioClip);
         	audio.setRefDistance(100);
         	audio.setLoop(false);
-		
+		console.log("Audio is loaded");
 		items.add(audio);
 				
 		//Create a renderer
@@ -189,15 +192,17 @@ document.addEventListener('DOMContentLoaded', () => {
     		renderer.setPixelRatio(window.devicePixelRatio);
     		renderer.setSize(window.innerWidth, window.innerHeight);
     		renderer.xr.enabled = true;
-		//creat a button to request an XR session
+		//creat a button to request an XR session and hide loading screen
 		const arButton = ARButton.createButton(renderer, {optionalFeatures: ['dom-overlay'], domOverlay: {root: document.body}});
     		document.body.appendChild(renderer.domElement);
     		document.body.appendChild(arButton);
 		
+		
+		// show idel animation
 		const mixer = new THREE.AnimationMixer(avatar.scene);
 		const action = mixer.clipAction(avatar.animations[0]);
 		action.play();
-		
+		//creat an event listner for when an event occure once an event start
 		document.body.addEventListener('click', (e) => {
 			const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
 			const mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -213,12 +218,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 				if (o.userData.clickable) {
 					if (o === playIcon && !pauseIcon.visible) {
+						//show talking animation
 						console.log("intro");
 						audio.play();
 						playIcon.visible=false;
 						pauseIcon.visible=true;
 						console.log(audio);
 					} else if (o === playIcon && pauseIcon.visible) {
+						//return to idel animation
 						console.log("intro paused");
 						audio.pause();
 						playIcon.visible=true;
@@ -239,9 +246,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 		
+		//create a clock element
 		const clock = new THREE.Clock();
-
-		//creat an event listner for when an event occure once an event start
+		
 		renderer.xr.addEventListener("sessionstart", async (e) => {
 			console.log("Session start");
 			document.getElementById("Header").setAttribute("hidden", "hidden");
