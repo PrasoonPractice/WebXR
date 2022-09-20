@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		
 		const [
             		playTexture,
+			pauseTexture,
             		cardTexture,
             		webTexture,
             		locationTexture,
@@ -87,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             		emailTexture,
         	] = await loadTextures([
             		'../Project1/play.png',
+			'../Project1/pause.png',
             		'../Project1/card.png',
             		'../Project1/web.png',
             		'../Project1/location.png',
@@ -123,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const iconGeometry = new THREE.CircleGeometry(0.1, 32);
 		const mapiconGeometry = new THREE.CircleGeometry(0.14, 32);
         	const playMaterial = new THREE.MeshBasicMaterial({ map: playTexture });
+		const pauseMaterial = new THREE.MeshBasicMaterial({ map: pauseTexture });
         	const webMaterial = new THREE.MeshBasicMaterial({ map: webTexture });
         	const locationMaterial = new THREE.MeshBasicMaterial({ map: locationTexture });
         	const callMaterial = new THREE.MeshBasicMaterial({ map: callTexture });
@@ -130,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const emailMaterial = new THREE.MeshBasicMaterial({ map: emailTexture });
 
         	const playIcon = new THREE.Mesh(iconGeometry, playMaterial);
+		const pauseIcon = new THREE.Mesh(iconGeometry,pauseMaterial);
         	const webIcon = new THREE.Mesh(iconGeometry, webMaterial);
         	const locationIcon = new THREE.Mesh(mapiconGeometry, locationMaterial);
         	const callIcon = new THREE.Mesh(iconGeometry, callMaterial);
@@ -137,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         	const emailIcon = new THREE.Mesh(iconGeometry, emailMaterial);
 
         	playIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.18);
+		pauseIcon.position.set(xPose - 0.75, yPose + 0.355, zPose + 0.18);
         	webIcon.position.set( xPose - 0.3, yPose - 0.246, zPose);
         	locationIcon.position.set(xPose - 0.1, yPose - 0.313, zPose - 0.245);
         	callIcon.position.set(xPose + 0.1, yPose - 0.246, zPose);
@@ -147,6 +152,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		 //handle buttons
 		playIcon.userData.clickable = true;
 		playIcon.visible = true;
+		pauseIcon.userData.clickable = true;
+		pauseIcon.visible = false;
 		webIcon.userData.clickable = true;
 		locationIcon.userData.clickable = true;
 		callIcon.userData.clickable = true;
@@ -156,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		items.add(card);
 		items.add(cardbg);
 		items.add(playIcon);
+		items.add(pauseIcon);
 		items.add(webIcon);
 		items.add(locationIcon);
 		items.add(callIcon);
@@ -205,11 +213,17 @@ document.addEventListener('DOMContentLoaded', () => {
 					o = o.parent;
 				}
 				if (o.userData.clickable) {
-					if (o === playIcon) {
+					if (o === playIcon && !pauseIcon.visible) {
 						console.log("intro");
 						audio.play();
 						playIcon.visible=false;
+						pauseIcon.visible=true;
 						console.log(audio);
+					} else if (o === pauseIcon && pauseIcon.visible) {
+						console.log("intro paused");
+						audio.pause();
+						playIcon.visible=true;
+						pauseIcon.visible=false;
 					} else if (o === webIcon) {
 						window.location.href = " https://falconicx.com/";
 					} else if (o === locationIcon) {
@@ -246,8 +260,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				scene.add(items);
 				if (audio.isPlaying) {
 					playIcon.visible = false;
+					pauseIcon.visible = true;
 				} else {
 					playIcon.visible = true;
+					pauseIcon.visible = false;
 				}
 				renderer.render(scene, camera);
 			});
