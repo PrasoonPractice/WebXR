@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		console.log("Lable added to the group");
 		
 		//load the 3d model using a loder object
-		const avatar = await loadGLTF('../Project1/person/Avatar.gltf');
+		const avatar = await loadGLTF('../ARtest/suit.gltf');
 		
 		avatar.scene.scale.set(1.2, 1.2, 1.2);
 		avatar.scene.position.x = xPose - 0.75 ;
@@ -280,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     		renderer.xr.addEventListener("sessionend", () => {
       			console.log("session end");
-			window.location.href = "https://prasoonpractice.github.io/WebXR/applications/hit/index.html";
+			window.location.href = "https://prasoonpractice.github.io/WebXR/applications/hit2/index.html";
     		});
 		
 	}
